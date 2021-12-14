@@ -1,10 +1,14 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-
+import SimplexNoise from 'simplex-noise'
+const {SimplexNoise} = require('simplex-noise');
 
 
 // ----------------------------------------------------------------
 // HERO
+
+const simplex = new SimplexNoise();
+
 
 // Scene
 const hero = new THREE.Scene()
