@@ -7,7 +7,7 @@ body {
     overflow-y: scroll;
 }
 
-.container {
+#hero {
     z-index: -1;
     position:fixed;
     top: 0px;
@@ -36,5 +36,6 @@ body {
     margin-top: 1000px;
     background: #000;
     z-index: 3;
-    height: 600px;
+    height: 1200px;
+    color: #FFF;
 }
