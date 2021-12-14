@@ -38,7 +38,7 @@ loader.load(
         console.log(gltf)
         gltf.scene.scale.x = 0.4
         gltf.scene.scale.y = 0.4
-        gltf.scene.scale.z = 0.4
+        gltf.scene.scale.z = 0.5
         gltf.scene.position.y = 0.8
         scene.add(gltf.scene)
         introAnimation()
@@ -100,7 +100,7 @@ function introAnimation() {
 
 function animate() {
     requestAnimationFrame(animate)
-    
+
 
     // controls.update()
 
