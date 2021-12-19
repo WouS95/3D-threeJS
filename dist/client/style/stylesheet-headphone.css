@@ -7,6 +7,15 @@ body {
     overflow-y: scroll;
 }
 
+h1 {
+    line-height: 1.1;
+}
+
+p {
+    font-size: 18px; 
+    line-height: 1.5;
+}
+
 #hero {
     z-index: -1;
     position:fixed;
@@ -34,8 +43,94 @@ body {
 
 .soundSpecs {
     margin-top: 1000px;
-    background: #000;
+    background: #111;
     z-index: 3;
-    height: 1200px;
     color: #FFF;
+    display: flex;
+}
+
+#canvas2 {
+    background: #111;
+    width: 50%;
+}
+
+#soundSpecsText{
+    width: 50%;
+}
+
+#soundSpecsTextDiv {
+    position: relative;
+    top: 500px;
+    text-align: left;
+    padding-right: 250px;
+    padding-left: 75px;
+    opacity: 0;
+}
+
+.bandSpecs {
+    margin-bottom: -8px;
+}
+
+#micSpecsText {
+    margin: auto;
+    margin-top: 0px;
+    opacity: 0;
+    width: 500px;
+}
+
+#bandSpecsText {
+    margin: auto;
+    position: relative;
+    top: 500px;
+    width: 500px;
+    opacity: 0;
+}
+
+.specsOverview {
+    background: #111;
+    padding: 125px 250px;
+    color: #FFF;
+    text-align: left;
+}
+
+.specsRow {
+    display: flex;
+}
+
+.specsList {
+    margin-left: 100px;
+}
+
+.specsRow h2 {
+    width: 350px;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background: #666666;
+    margin: 50px 0px;
+}
+
+.buyNow {
+    display: flex;
+}
+
+.buyNowText {
+    text-align: left;
+    margin-top: 150px;
+}
+
+.buyNowText h1 {
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.buyNowText p {
+    margin: 0px;
+}
+
+.buyNowText button {
+    padding: 10px 12px;
+    font-size: .9em;
 }
