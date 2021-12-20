@@ -14,15 +14,61 @@
             /* .animation {
                 mix-blend-mode: exclusion;
             } */
+            .animation3{
+                /* position: absolute;
+                /* top: 0;
+                left: 0; 
+                outline: none; */
+                height: 100vh;
+                /* display: grid; */
+                place-items: left;
+                position: absolute;
+                /* top: 0;*/
+                left: 0; 
+                outline: none;
+            }
+            .animationThree{
+                /* height: 100vh;
+                display: grid;
+                place-items: center; */
+                position: absolute;
+                /* top: 0;*/
+                left: 0; 
+                outline: none;
+            }
+
+            /* .animation2{
+                height: 100vh;
+                display: grid;
+                place-items: center;
+            }
+            .animation3{
+                height: 100vh;
+                display: grid;
+                place-items: center;
+            } */
         </style>
     </head>
 
     <body>
-        <h1>phoney phone 99</h1>
-        <canvas class="animation" id="animationOne"></canvas>
-        <canvas class="animation" id="animationTwo"></canvas>
-        <img src='assets/noemi/phone/phone.PNG'>
+        <h1>YouPhone </h1>
+        <div class="animation1">
+            <canvas class="animation" id="animationOne"></canvas>
+        </div>
+        <div class="animation2">
+            <canvas class="animation" id="animationTwo"></canvas>
+        </div>
+        <!-- <img src='assets/noemi/phone/phone.PNG'> -->
+        <div class="animation3"> 
+            <br><br><br>
+            <h1>Maak de mooiste foto's</h1>
+            <h2>
+                Met niet een camera...<br>
+                Maar twee!
+            </h2>
+        </div>
         <canvas class="animation" id="animationThree"></canvas>
+        <canvas class="animation" id="animationFour"></canvas>
         <script type="module" src="bundle.js"></script>
     </body>
 </html>
