@@ -43,14 +43,18 @@ p {
 
 .soundSpecs {
     margin-top: 1000px;
-    background: #111;
+    background: #000;
     z-index: 3;
     color: #FFF;
     display: flex;
 }
 
+.micSpecs {
+    background: #FFF;
+}
+
 #canvas2 {
-    background: #111;
+    background: #000;
     width: 50%;
 }
 
@@ -69,6 +73,7 @@ p {
 
 .bandSpecs {
     margin-bottom: -8px;
+    background: #FFF;
 }
 
 #micSpecsText {
@@ -114,6 +119,7 @@ p {
 
 .buyNow {
     display: flex;
+    background: #FFF;
 }
 
 .buyNowText {
