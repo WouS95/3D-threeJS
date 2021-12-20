@@ -1,0 +1,328 @@
+@charset "UTF-8";
+/* CSS Document */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0px !important;
+    /* background-color: #f0f0f0; */
+    background: #F0F0F0;
+    background: -webkit-linear-gradient(top, #F0F0F0, #D6D6D6);
+    background: -moz-linear-gradient(top, #F0F0F0, #D6D6D6);
+    background: linear-gradient(to bottom, #F0F0F0, #D6D6D6);
+    color: #242424;
+    overflow-x: hidden;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+}
+
+section {
+    width: 100vw;
+    display: flex;
+}
+
+.scrollBtn {
+    height: 50px;
+    width: 50px;
+    border-radius: 999999px;
+    background-color: black;
+    position: fixed;
+    left: calc(50vw - 25px);
+    bottom: 50px;
+    z-index: 99999999;
+    cursor: pointer;
+}
+
+.textBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    z-index: 999;
+}
+
+.textBoxOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+}
+
+.textBoxOverlay p {
+    color: #ddd;
+}
+
+.textBoxOverlay h1 {
+    color: white;
+    margin-top: 10px;
+}
+
+.textBoxContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 105vh;
+    /* background-color: blue;
+    opacity: 0.5; */
+    z-index: 999;
+}
+
+/* .TBO3 {
+    opacity: 0;
+    transform: translate(0%, 100%);
+} */
+
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.button {
+    font-family: 'MaisonMedium';
+    background-color: #e1e1e1;
+    width: 100px;
+    border-radius: 10px;
+    border-width: 0;
+    color: #242424;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 12px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.intro .textBox {
+    margin-bottom: 4.5vh;
+}
+
+.intro .textBox h1 {
+    margin: 10px 0 40px 0;
+}
+
+.intro {
+    height: 105vh;
+    width: calc(100vw - 16vw);
+    align-items: center;
+    padding: 0 8vw;
+}
+
+.sideBySide {
+    display: flex;
+    width: 300vw;
+}
+
+.filler {
+    height: 100vh;
+}
+
+.horizontal {
+    height: 100vh;
+    position: relative;
+}
+
+.horizontal0 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.sideBySide .horizontal1 {
+    background-color: #5f5b71;
+}
+
+.sideBySide .horizontal0 .textBox {
+    align-items: center;
+    color: #ccc;
+    margin-bottom: 60px;
+}
+
+.horizontal .textBox h1 {
+    /* color: white; */
+    color: #242424;
+}
+
+.horizontal1 .textBox {
+    align-items: center;
+    color: #ccc;
+    margin-bottom: 60px;
+}
+
+.horizontal1 .textBox h1 {
+    color: white;
+}
+
+.horizontal1 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.sideBySide .horizontal2 {
+    background-image: url('../RESOURCES/wallpaper.jpg');
+    background-size: cover;
+}
+
+/* KEYBOARD */
+
+.KBS1 {
+    height: 200vh;
+    /* background: -webkit-linear-gradient(top, #0a0f24, #f0f0f0);
+    background: -moz-linear-gradient(top, #0a0f24, #f0f0f0);
+    background: linear-gradient(to bottom, #0a0f24, #f0f0f0); */
+    /* background-image: url('../RESOURCES/wallpaper4.png'); */
+    background-size: 100vw 70vh;
+    background-color: #F0F0F0;
+    background-repeat: no-repeat;
+}
+
+.KBS2 {
+    height: 200vh;
+    background-color: #F0F0F0;
+    border-top: 2px solid black;
+}
+
+
+/* * */
+
+#guiContainer {
+    position: fixed;
+    height: 500px;
+    width: 500px;
+    z-index: 999999999;
+    top: 0;
+    right: 0;
+    /* display: flex; */
+    display: none;
+    justify-content: flex-end;
+}
+
+* {
+    font-family: 'MaisonBook';
+    margin: 0;
+}
+
+h1 {
+    font-family: 'MaisonDemi';
+    font-size: 70px;
+}
+
+p {
+    font-size: 20px;
+    color: #848484;
+}
+
+/* FONTS */
+
+@font-face{
+    font-family: "MaisonBold";
+    src: url('../NeueHaas/MaisonNeue-Bold.ttf'),
+    url('../NeueHaas/MaisonNeue-Bold.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonDemi";
+    src: url('../NeueHaas/MaisonNeue-Demi.ttf'),
+    url('../NeueHaas/MaisonNeue-Demi.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonMedium";
+    src: url('../NeueHaas/MaisonNeue-Medium.ttf'),
+    url('../NeueHaas/MaisonNeue-Medium.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonBook";
+    src: url('../NeueHaas/MaisonNeue-Book.ttf'),
+    url('../NeueHaas/MaisonNeue-Book.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonLight";
+    src: url('../NeueHaas/MaisonNeue-Light.ttf'),
+    url('../NeueHaas/MaisonNeue-Light.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayBlack";
+    src: url('../NeueHaas/NeueHaasDisplayBlack.ttf'),
+    url('../NeueHaas/NeueHaasDisplayBlack.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayBold";
+    src: url('../NeueHaas/NeueHaasDisplayBold.ttf'),
+    url('../NeueHaas/NeueHaasDisplayBold.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayMedium";
+    src: url('../NeueHaas/NeueHaasDisplayMedium.ttf'),
+    url('../NeueHaas/NeueHaasDisplayMedium.ttf');   
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayMediumItalic";
+    src: url('../NeueHaas/NeueHaasDisplayMediumItalic.ttf'),
+    url('../NeueHaas/NeueHaasDisplayMediumItalic.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayRoman";
+    src: url('../NeueHaas/NeueHaasDisplayRoman.ttf'),
+    url('../NeueHaas/NeueHaasDisplayRoman.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayRomanItalic";
+    src: url('../NeueHaas/NeueHaasDisplayRomanItalic.ttf'),
+    url('../NeueHaas/NeueHaasDisplayRomanItalic.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayLight";
+    src: url('../NeueHaas/NeueHaasDisplayLight.ttf'),
+    url('../NeueHaas/NeueHaasDisplayLight.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayLightItalic";
+    src: url('../NeueHaas/NeueHaasDisplayLightItalic.ttf'),
+    url('../NeueHaas/NeueHaasDisplayLightItalic.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayThin";
+    src: url('../NeueHaas/NeueHaasDisplayThin.ttf'),
+    url('../NeueHaas/NeueHaasDisplayThin.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayThinItalic";
+    src: url('../NeueHaas/NeueHaasDisplayThinItalic.ttf'),
+    url('../NeueHaas/NeueHaasDisplayThinItalic.ttf'); 
+}
+
+@font-face{
+    font-family: "NeueHaasDisplayXThin";
+    src: url('../NeueHaas/NeueHaasDisplayXThin.ttf'),
+    url('../NeueHaas/NeueHaasDisplayXThin.ttf'); 
+}
