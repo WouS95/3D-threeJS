@@ -39,7 +39,7 @@ h1 {
 }
 
 .hero {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     /* border: 3px solid red; */
     margin: 0 auto;
     position: relative;
@@ -49,7 +49,7 @@ h1 {
 }
 
 .carrousel {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     /* border: 3px solid red; */
     margin: auto;
 
@@ -58,7 +58,7 @@ h1 {
 }
 
 .overzicht {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     /* border: 3px solid red; */
     margin: auto;
 
@@ -67,7 +67,7 @@ h1 {
 }
 
 #heroVisual {
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
     /* border: 3px solid blue; */
     position: absolute;
     /* z-index: 1; */
@@ -102,19 +102,19 @@ h1 {
 }
 
 #carrouselVisual {
-    border: 3px solid blue;
     /* border: 3px solid blue; */
+    /* border: 3px solid blue; */
+    position: absolute;
+    /* z-index: 1; */
     margin: auto;
+    top: 850px;
 
     width: 100%;
     height: 800px;
-
-    z-index: 1;
-    /* background-color: black; */
 }
 
 #overzichtVisual {
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
     /* border: 3px solid blue; */
     margin: auto;
 
