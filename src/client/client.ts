@@ -58,6 +58,15 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)
+    camera2.aspect = window.innerWidth/2 / window.innerHeight
+    camera2.updateProjectionMatrix()
+    renderer2.setSize(window.innerWidth/2, window.innerHeight)
+    camera3.aspect = window.innerWidth / window.innerHeight
+    camera3.updateProjectionMatrix()
+    renderer3.setSize(window.innerWidth, window.innerHeight)
+    camera4.aspect = window.innerWidth / window.innerHeight
+    camera4.updateProjectionMatrix()
+    renderer4.setSize(window.innerWidth, window.innerHeight)
     render()
 }
 
@@ -228,12 +237,11 @@ const scene5 = new THREE.Scene()
 let headphone5: any
 
 const camera5 = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera5.position.z = 15
-camera5.position.y = -1.5
-camera5.position.x = -0.7
+camera5.position.z = 5
+camera5.position.x = -0.5
 
 const ambientLight5 = new THREE.AmbientLight()
-ambientLight5.intensity = 0.5
+ambientLight5.intensity = 4
 scene5.add(ambientLight5)
 
 const spotLight5 = new THREE.SpotLight()
@@ -251,8 +259,11 @@ const renderer5 = new THREE.WebGLRenderer({
 renderer5.setSize(window.innerWidth/2, window.innerHeight/2)
 
 loader.load(
-    'assets/bram/headphone/uploads_files_3333731_Headphone.gltf',
+    'assets/bram/test/scene.gltf',
     function (gltf) {
+        gltf.scene.scale.x = 0.004
+        gltf.scene.scale.y = 0.004
+        gltf.scene.scale.z = 0.004
         scene5.add(gltf.scene)
         headphone5 = gltf
     },
