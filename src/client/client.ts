@@ -15,7 +15,7 @@ import { Raycaster } from 'three'
 const hero = new THREE.Scene()
 const visual = new THREE.Scene()
 hero.background = new THREE.Color(0)
-// visual.background = new THREE.Color(0xff00ff)
+visual.background = new THREE.Color(0xe8e8e8)
 
 // Camera
 const heroCamera = new THREE.PerspectiveCamera(75, 1280 / 800, 0.1, 1000)
@@ -39,12 +39,13 @@ for (let i = 0; i < 4; i++) {
     visual.add(img)
 }
 
-let objs = [] as Array
+let objs = [] as any
+// let objs: objs[] = [] as any;
+
 
 visual.traverse((object) => {
     if ((<THREE.Mesh>object).isMesh)
         objs.push(object)
-
 })
 
 // Lights HERO
@@ -137,8 +138,8 @@ let y = 0
 let position = 0
 
 function onMouseWheel(event: any) {
-    console.log(event.deltaY)
-    y = event.deltaY * 0.007
+    // console.log(event.deltaY)
+    y = event.deltaY * 0.002
 }
 
 const mouse = new THREE.Vector2()
@@ -178,11 +179,20 @@ function animate() {
 
     position += y
     y *= .9
+
     visualCamera.position.y = -position
+
 
     // Raycaster
     raycaster.setFromCamera(mouse, visualCamera)
     const intersects = raycaster.intersectObjects(objs)
+    // console.log(intersects)
+    for(const intersect of intersects) {
+        console.log('intersected')
+    }
+
+
+
     render()
 }
 
