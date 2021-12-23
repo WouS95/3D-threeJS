@@ -7,6 +7,11 @@ import gsap from 'gsap'
 const scene1 = new THREE.Scene()
 
 const hero = document.getElementById("hero") as HTMLElement
+const soundSpecs = document.getElementById("soundSpecs") as HTMLElement
+const micSpecs = document.getElementById("micSpecs") as HTMLElement
+const bandSpecs = document.getElementById("bandSpecs") as HTMLElement
+const bandAdjustSpecs = document.getElementById("bandAdjustSpecs") as HTMLElement
+
 let headphone1: any
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
