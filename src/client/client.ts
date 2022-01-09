@@ -57,7 +57,7 @@ headphoneObject.name = "headphone"
 
 const normalMaterial = new THREE.MeshNormalMaterial({
     transparent: true,
-    opacity: 0
+    opacity: 0.75
 })
 const headphoneSoundGeometry = new THREE.CylinderGeometry( 0.62, 0.62, 0.82, 32 )
 
@@ -70,6 +70,13 @@ headphoneSoundRight.position.y = -0.6
 headphoneSoundRight.position.z = -0.15
 headphoneSoundRight.name = "sound"
 soundArea.add(headphoneSoundRight)
+
+const headhoneBandAdjustGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+const headhoneBandAdjust = new THREE.Mesh(headhoneBandAdjustGeometry, normalMaterial)
+headhoneBandAdjust.position.x = -1
+headhoneBandAdjust.position.y = 0.1
+headhoneBandAdjust.position.z = -0.1
+headhoneBandAdjust.name = "bandAdjust"
 
 const headphoneBandGeometry = new THREE.BoxGeometry(2, 0.7, 0.5)
 const headphoneBand = new THREE.Mesh(headphoneBandGeometry, normalMaterial)
@@ -85,6 +92,7 @@ headphoneMic.position.z = 0.7
 headphoneMic.name = "mic"
 
 headphoneObject.add(headphoneMic)
+headphoneObject.add(headhoneBandAdjust)
 headphoneObject.add(headphoneBand)
 headphoneObject.add(soundArea)
 scene1.add(headphoneObject)
@@ -102,6 +110,7 @@ function onWindowResize() {
 let isShowingSound = false
 let isShowingMic = false
 let isShowingBand = false
+let isShowingBandAdjust = false
 
 const mouse = new THREE.Vector2()
 const raycaster = new THREE.Raycaster()
@@ -126,13 +135,16 @@ function onMouseMove( event: any) {
             if(intersects[i].object.name == "mic"){
                 goToMicSpecs()
             }
+            if(intersects[i].object.name == "bandAdjust"){
+                goToBandAdjustSpecs()
+            }
         }
     }
 }
 
 window.addEventListener( 'click', onMouseMove, false );
 
-// Animations
+// Animation
 function introAnimation() {
     const canvas = document.getElementById("canvas")
     gsap.to(canvas, {
@@ -182,6 +194,7 @@ function goToOriginal(){
 }
 
 function goToSoundSpecs(){
+    const soundSpecs = document.getElementById("soundSpecs")
     if(!isShowingSound){
         gsap.to(camera.rotation, {
             duration: 1.2,
@@ -198,13 +211,68 @@ function goToSoundSpecs(){
                 background: "#000"
             }
         })
+        gsap.to(soundSpecs, {
+            duration: 1,
+            css: {
+                top: "350px",
+                opacity: "1"
+            }
+        })
     } else {
+        gsap.to(soundSpecs, {
+            duration: 1,
+            css: {
+                top: "0px",
+                opacity: "0"
+            }
+        })
         goToOriginal()
     }
     isShowingSound = !isShowingSound
 }
 
+function goToBandAdjustSpecs(){
+    const bandAdjustSpecs = document.getElementById("bandAdjustSpecs")
+    if(!isShowingBandAdjust){
+        gsap.to(camera.rotation, {
+            duration: 1.2,
+            y: -Math.PI / 2 - 0.3
+        })
+        gsap.to(camera.position, {
+            duration: 1.2,
+            x: -2,
+            z: 0.1,
+            y: 0.1
+        })
+        gsap.to(hero, {
+            duration: 0.5,
+            css: {
+                background: "#000"
+            }
+        })
+        gsap.to(bandAdjustSpecs, {
+            duration: 1,
+            css: {
+                top: "350px",
+                opacity: "1"
+            }
+        })
+    } else {
+        gsap.to(bandAdjustSpecs, {
+            duration: 1,
+            css: {
+                top: "0px",
+                opacity: "0"
+            }
+        })
+        goToOriginal()
+    }
+    isShowingBandAdjust = !isShowingBandAdjust
+}
+
 function goToMicSpecs(){
+    console.log('test')
+    const micSpecs = document.getElementById("micSpecs")
     if(!isShowingMic){
         gsap.to(camera.rotation, {
             duration: 1.2,
@@ -222,13 +290,28 @@ function goToMicSpecs(){
                 background: "#000"
             }
         })
+        gsap.to(micSpecs, {
+            duration: 1,
+            css: {
+                bottom: "250px",
+                opacity: "1"
+            }
+        })
     } else {
         goToOriginal()
+        gsap.to(micSpecs, {
+            duration: 1,
+            css: {
+                bottom: "-250px",
+                opacity: "0"
+            }
+        })
     }
     isShowingMic = !isShowingMic
 }
 
 function goToBandSpecs(){
+    const bandSpecs = document.getElementById("bandSpecs")
     if(!isShowingBand){
         gsap.to(camera.position, {
             duration: 2,
@@ -255,7 +338,22 @@ function goToBandSpecs(){
                 background: "#000"
             }
         })
+        gsap.to(bandSpecs, {
+            delay: 1.5,
+            duration: 1,
+            css: {
+                top: "100px",
+                opacity: "1"
+            }
+        })
     } else {
+        gsap.to(bandSpecs, {
+            duration: 1,
+            css: {
+                top: "-200px",
+                opacity: "0"
+            }
+        })
         goToOriginal()
     }
     isShowingBand = !isShowingBand
@@ -292,3 +390,15 @@ function render() {
     renderer.render(scene1, camera)
 }
 animate()
+
+const micSpecsBackButton = document.getElementById("micSpecsBack") as HTMLButtonElement
+micSpecsBackButton.onclick = goToMicSpecs
+
+const bandSpecsBackButton = document.getElementById("bandSpecsBack") as HTMLButtonElement
+bandSpecsBackButton.onclick = goToBandSpecs
+
+const soundSpecsBackButton = document.getElementById("soundSpecsBack") as HTMLButtonElement
+soundSpecsBackButton.onclick = goToSoundSpecs
+
+const bandAdjustBackButton = document.getElementById("bandAdjustSpecsBack") as HTMLButtonElement
+bandAdjustBackButton.onclick = goToBandAdjustSpecs
