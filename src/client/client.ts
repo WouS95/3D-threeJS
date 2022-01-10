@@ -3,6 +3,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import { GUI } from "dat.gui"
 import { Raycaster } from 'three'
+import gsap from "gsap";
+
 
 
 // ----------------------------------------------------------------
@@ -15,7 +17,7 @@ import { Raycaster } from 'three'
 const hero = new THREE.Scene()
 const visual = new THREE.Scene()
 hero.background = new THREE.Color(0)
-visual.background = new THREE.Color(0xe8e8e8)
+// visual.background = new THREE.Color(0xe8e8e8)
 
 // Camera
 const heroCamera = new THREE.PerspectiveCamera(75, 1280 / 800, 0.1, 1000)
@@ -29,14 +31,18 @@ const textureLoader = new THREE.TextureLoader()
 
 const geometry = new THREE.PlaneBufferGeometry(1, 1.3)
 
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 3; i++) {
     const material = new THREE.MeshBasicMaterial({
         map: textureLoader.load(`/img/${i}.jpg`)
     })
 
     const img = new THREE.Mesh(geometry, material)
+    
+    img.add
+
     img.position.set(Math.random() + .8, i * -1.8, 0)
     visual.add(img)
+
 }
 
 let objs = [] as any
@@ -154,7 +160,7 @@ function animate() {
     requestAnimationFrame(animate)
     animateLights()
 
-    plane.rotation.z += 0.0005
+    plane.rotation.z += 0.0015
 
     // SINE WAVE
     // const now = Date.now() / 1000;
@@ -177,11 +183,15 @@ function animate() {
 
     gallery.rotation.x += .05
 
-    position += y
-    y *= .9
+    if ( window.scrollY > 0 ) {
+        position += y
+        y *= .9
+    }
+    
+
+    showSpecs()
 
     visualCamera.position.y = -position
-
 
     // Raycaster
     raycaster.setFromCamera(mouse, visualCamera)
@@ -196,6 +206,53 @@ function animate() {
     render()
 }
 
+function showSpecs(){
+
+    const specs1 = document.getElementById("carrouselText1")
+    if (window.scrollY > 100){
+        gsap.to(specs1, {
+            duration: 3,
+            css: {
+                top: "900px",
+                opacity: 0
+            }
+        })
+    }
+
+    const specs2 = document.getElementById("carrouselText2")
+    if (window.scrollY > 280){
+        gsap.to(specs2, {
+            duration: 3,
+            css: {
+                top: "900px",
+                opacity: 0
+            }
+        })
+    }
+
+    const specs3 = document.getElementById("carrouselText3")
+    if (window.scrollY > 450){
+        gsap.to(specs3, {
+            duration: 3,
+            css: {
+                top: "900px",
+                opacity: 0
+            }
+        })
+    }
+
+    // const specs4 = document.getElementById("carrouselText4")
+    // if (window.scrollY > 580){
+    //     gsap.to(specs4, {
+    //         duration: 3,
+    //         css: {
+    //             top: "800px",
+    //             opacity: 0
+    //         }
+    //     })
+    // }
+
+}
 
 
 function render() {

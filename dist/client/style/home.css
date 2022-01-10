@@ -107,7 +107,7 @@ h1 {
     position: absolute;
     /* z-index: 1; */
     margin: auto;
-    top: 850px;
+    top: 890px;
 
     width: 100%;
     height: 800px;
@@ -123,4 +123,47 @@ h1 {
 
     z-index: 1;
     /* background-color: black; */
+}
+
+#carrouselText1, #carrouselText2, #carrouselText3 {
+    font-family: helvetica, arial, sans-serif;
+    font-size: 24px;
+}
+
+#carrouselText1 {
+    position: absolute;
+    top: 1250px;
+    color: white;
+    z-index: 99;
+}
+
+#carrouselText2 {
+    position: absolute;
+    top: 1425px;
+    color: white;
+    z-index: 99;
+}
+
+#carrouselText3 {
+    position: absolute;
+    top: 1580px;
+    color: white;
+    z-index: 99;
+}
+
+/* #carrouselText4 {
+    position: absolute;
+    top: 1780px;
+    color: white;
+    z-index: 99;
+} */
+h3 {
+    color: white;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 30px;
+
+    position: absolute;
+    top: 900px;
+    left: 500px;
+    z-index: 99;
 }
