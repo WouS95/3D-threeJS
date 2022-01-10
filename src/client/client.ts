@@ -41,8 +41,6 @@ loader.load(
         gltf.scene.rotation.y = Math.PI/2
         headphoneObject.add(gltf.scene)
         headphone1 = gltf
-        console.log(headphone1)
-        console.log(headphone1.scene.children)
         introAnimation()
     },
     (xhr) => {
@@ -57,7 +55,7 @@ headphoneObject.name = "headphone"
 
 const normalMaterial = new THREE.MeshNormalMaterial({
     transparent: true,
-    opacity: 0.75
+    opacity: 0
 })
 const headphoneSoundGeometry = new THREE.CylinderGeometry( 0.62, 0.62, 0.82, 32 )
 
@@ -111,6 +109,7 @@ let isShowingSound = false
 let isShowingMic = false
 let isShowingBand = false
 let isShowingBandAdjust = false
+let isSpinning = false
 
 const mouse = new THREE.Vector2()
 const raycaster = new THREE.Raycaster()
@@ -379,7 +378,8 @@ window.onscroll = function(){
 
 function animate() {
     requestAnimationFrame(animate)
-    if(headphone1){
+    if(headphone1 && isSpinning){
+        headphone1.rotation.x += 0.01
     }
     // controls.update()
 

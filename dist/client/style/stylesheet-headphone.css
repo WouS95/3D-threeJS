@@ -94,7 +94,7 @@ p {
 
 .specsDiv {
     position: absolute;
-    color: aqua;
+    color: #FFF;
     opacity: 0;
     z-index: 10;
 }
@@ -113,7 +113,7 @@ p {
 }
 
 #bandSpecs {
-    padding: 0px 300px;
+    padding: 0px 400px;
     top: -200px;
 }
 
