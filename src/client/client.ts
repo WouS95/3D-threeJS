@@ -126,19 +126,49 @@ function onMouseMove( event: any) {
     const intersects = raycaster.intersectObject(scene1, true)
     for (let i = 0; i < intersects.length; i++) {
         if(intersects[i].object){
-            if(intersects[i].object.name == "sound"){
-                goToSoundSpecs()
-            }
-            if(intersects[i].object.name == "band"){
-                goToBandSpecs()
-            }
-            if(intersects[i].object.name == "mic"){
-                goToMicSpecs()
-            }
-            if(intersects[i].object.name == "bandAdjust"){
-                goToBandAdjustSpecs()
+            if(!isShowingSpecsOf()){
+                if(intersects[i].object.name == "sound"){
+                    goToSoundSpecs()
+                }
+                if(intersects[i].object.name == "band"){
+                    goToBandSpecs()
+                }
+                if(intersects[i].object.name == "mic" ){
+                    goToMicSpecs()
+                }
+                if(intersects[i].object.name == "bandAdjust" ){
+                    goToBandAdjustSpecs()
+                }
+            } else {
+                if(intersects[i].object.name == "sound" && isShowingSpecsOf() == "sound"){
+                    goToSoundSpecs()
+                }
+                if(intersects[i].object.name == "band" && isShowingSpecsOf() == "band"){
+                    goToBandSpecs()
+                }
+                if(intersects[i].object.name == "mic" && isShowingSpecsOf() == "mic"){
+                    goToMicSpecs()
+                }
+                if(intersects[i].object.name == "bandAdjust" && isShowingSpecsOf() == "bandAdjust"){
+                    goToBandAdjustSpecs()
+                }
             }
         }
+    }
+}
+
+function isShowingSpecsOf(){
+    if(isShowingBandAdjust){
+        return "bandAdjust"
+    }
+    if(isShowingBand){
+        return "band"
+    }
+    if(isShowingMic){
+        return "mic"
+    }
+    if(isShowingSound){
+        return "sound"
     }
 }
 
@@ -300,7 +330,6 @@ function goToMicSpecs(){
         toggleSpin()
     }
 
-    console.log('test')
     const micSpecs = document.getElementById("micSpecs")
     if(!isShowingMic){
         gsap.to(spinButton, {
