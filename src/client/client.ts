@@ -7,6 +7,7 @@ import gsap from 'gsap'
 const scene1 = new THREE.Scene()
 
 const hero = document.getElementById("hero") as HTMLElement
+const spinButton = document.getElementById("spinButton") as HTMLButtonElement
 let headphone1: any
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
@@ -107,7 +108,7 @@ function onWindowResize() {
 
 let isShowingSound = false
 let isShowingMic = false
-let isShowingBand = false
+let isShowingBand = false 
 let isShowingBandAdjust = false
 let isSpinning = false
 
@@ -164,13 +165,14 @@ function introAnimation() {
         delay: 1,
         duration: 2,
         css: {
-            marginTop: 300,
+            marginTop: 330,
             opacity: 1
         }
     })
 }
 
 function goToOriginal(){
+    spinButton.style.display = 'inline-block'
     gsap.to(camera.position, {
         duration: 0.8,
         z: 3,
@@ -193,8 +195,19 @@ function goToOriginal(){
 }
 
 function goToSoundSpecs(){
+
+    if(isSpinning){
+        toggleSpin()
+    }
+
     const soundSpecs = document.getElementById("soundSpecs")
     if(!isShowingSound){
+        gsap.to(spinButton, {
+            delay: 0.5,
+            css: {
+                display: 'none'
+            }
+        })
         gsap.to(camera.rotation, {
             duration: 1.2,
             y: Math.PI / 2 -0.4
@@ -207,7 +220,7 @@ function goToSoundSpecs(){
         gsap.to(hero, {
             duration: 0.5,
             css: {
-                background: "#000"
+                background: "#242424"
             }
         })
         gsap.to(soundSpecs, {
@@ -231,8 +244,20 @@ function goToSoundSpecs(){
 }
 
 function goToBandAdjustSpecs(){
+    
+    if(isSpinning){
+        toggleSpin()
+    }
+
     const bandAdjustSpecs = document.getElementById("bandAdjustSpecs")
+
     if(!isShowingBandAdjust){
+        gsap.to(spinButton, {
+            delay: 0.5,
+            css: {
+                display: 'none'
+            }
+        })
         gsap.to(camera.rotation, {
             duration: 1.2,
             y: -Math.PI / 2 - 0.3
@@ -246,7 +271,7 @@ function goToBandAdjustSpecs(){
         gsap.to(hero, {
             duration: 0.5,
             css: {
-                background: "#000"
+                background: "#242424"
             }
         })
         gsap.to(bandAdjustSpecs, {
@@ -270,9 +295,20 @@ function goToBandAdjustSpecs(){
 }
 
 function goToMicSpecs(){
+    
+    if(isSpinning){
+        toggleSpin()
+    }
+
     console.log('test')
     const micSpecs = document.getElementById("micSpecs")
     if(!isShowingMic){
+        gsap.to(spinButton, {
+            delay: 0.5,
+            css: {
+                display: 'none'
+            }
+        })
         gsap.to(camera.rotation, {
             duration: 1.2,
             y: -Math.PI / 2
@@ -286,7 +322,7 @@ function goToMicSpecs(){
         gsap.to(hero, {
             duration: 0.5,
             css: {
-                background: "#000"
+                background: "#242424"
             }
         })
         gsap.to(micSpecs, {
@@ -310,8 +346,19 @@ function goToMicSpecs(){
 }
 
 function goToBandSpecs(){
+    
+    if(isSpinning){
+        toggleSpin()
+    }
+
     const bandSpecs = document.getElementById("bandSpecs")
     if(!isShowingBand){
+        gsap.to(spinButton, {
+            delay: 0.5,
+            css: {
+                display: 'none'
+            }
+        })
         gsap.to(camera.position, {
             duration: 2,
             z: -1.3,
@@ -334,7 +381,7 @@ function goToBandSpecs(){
         gsap.to(hero, {
             duration: 0.5,
             css: {
-                background: "#000"
+                background: "#242424"
             }
         })
         gsap.to(bandSpecs, {
@@ -358,6 +405,21 @@ function goToBandSpecs(){
     isShowingBand = !isShowingBand
 }
 
+function toggleSpin(){
+    console.log(isSpinning)
+    if(isSpinning){
+        gsap.to(headphoneObject.rotation, {
+            duration: 1,
+            y: 0
+        })
+        spinButton.innerHTML = "Start spinning"
+    } else {
+        spinButton.innerHTML = "Stop spinning"
+    }
+    isSpinning = !isSpinning
+
+}
+
 
 window.onscroll = function(){
     console.log(window.scrollY)
@@ -379,7 +441,7 @@ window.onscroll = function(){
 function animate() {
     requestAnimationFrame(animate)
     if(headphone1 && isSpinning){
-        headphone1.rotation.x += 0.01
+        headphoneObject.rotation.y += 0.01
     }
     // controls.update()
 
@@ -402,3 +464,5 @@ soundSpecsBackButton.onclick = goToSoundSpecs
 
 const bandAdjustBackButton = document.getElementById("bandAdjustSpecsBack") as HTMLButtonElement
 bandAdjustBackButton.onclick = goToBandAdjustSpecs
+
+spinButton.onclick = toggleSpin
