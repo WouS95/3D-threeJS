@@ -2,7 +2,6 @@ body {
     overflow: hidden;
     margin: 0px;
     text-align: center;
-    height: 3000px;
     overflow-y: scroll;
 }
 
@@ -29,6 +28,7 @@ body {
     opacity: 0;
     font-weight: 500;
     z-index: -3;
+    color: #111;
 }
 
 .specsOverview {
@@ -71,6 +71,7 @@ body {
 .buyNowText {
     text-align: left;
     margin-top: 150px;
+    z-index: 10;
 }
 
 .buyNowText h1 {
@@ -86,7 +87,7 @@ body {
     position: absolute;
     color: #FFF;
     opacity: 0;
-    z-index: 10;
+    z-index: 2;
 }
 
 .specsDiv h1 {
@@ -126,6 +127,7 @@ body {
 
 #spinButton {
     width: auto;
+    opacity: 0;
 }
 
 .spinButtonDiv {
