@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+body {
+    text-align: center;
+    /* margin: 0px; */
+}
+h2{
+    padding-bottom: 45px;
+}
+.animation2{
+    height: 100vh;
+    width: 50%;
+    place-items: center;
+    text-align: center;
+    position: absolute;
+    left: 25%; 
+    outline: none;
+    /* font-size: 170%; */
+    margin-top: 60px;
+}
+.animation3{
+    height: 100vh;
+    place-items: left;
+    position: absolute;
+    left: 0; 
+    outline: none;
+    /* font-size: 170%; */
+    margin: 60px;
+}
+.animation5{
+    height: 100vh;
+    place-items: right;
+    position: absolute;
+    text-align: left;
+    left: 55%; 
+    outline: none;
+    /* font-size: 170%; */
+    margin: 47px;
+}
+.animationTwo{
+    position: absolute;
+    left: 0; 
+    outline: none;
+}
+.animationThree{
+    position: absolute;
+    left: 0; 
+    outline: none;
+}
+.animationFour{
+    position: absolute;
+    left: 0; 
+    outline: none;
+}
+.animationFive{
+    position: absolute;
+    left: 0; 
+    outline: none;
+}
