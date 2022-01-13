@@ -3,11 +3,10 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import { RoughnessMipmapper } from 'three/examples/jsm/utils/RoughnessMipmapper'
 import { PMREMGenerator } from 'three'
-import { reverse } from 'dns'
 
 /* SCENE */
 
@@ -33,13 +32,13 @@ scene.add(hemiLight);
 
 /* RENDERER */
 
-const renderer = new THREE.WebGLRenderer( { alpha: true } )
+const renderer = new THREE.WebGLRenderer({ alpha: true })
 renderer.toneMapping = THREE.ReinhardToneMapping
 renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMappingExposure = 1.5
 renderer.physicallyCorrectLights = true
 renderer.shadowMap.enabled = true
-renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
@@ -64,22 +63,10 @@ function onWindowResize() {
 
 const maxAnisotropy = renderer.capabilities.getMaxAnisotropy();
 
-// new GLTFLoader().load('RESOURCES/MacBook2020_GLTF/scene.gltf', function (gltf) {
-//     const model = gltf.scene
-
-//     model.traverse(function (object: any) {
-//         object.castShadow = false
-//         object.receiveShadow = false
-//         if ( object.isMesh === true && object.material.map !== null ) {
-//             object.material.map.anisotropy = maxAnisotropy;
-//         }
-//     })
-//     scene.add(model)
-// })
-
 var mixer: THREE.AnimationMixer
 var mixerKeys: THREE.AnimationMixer
 var mixerTouchbar: THREE.AnimationMixer
+var macbook: any
 
 new RGBELoader()
     .setPath('RESOURCES/')
@@ -93,6 +80,9 @@ new RGBELoader()
         const loader = new GLTFLoader().setPath('RESOURCES/MBani4/')
         loader.load('Macbook Pro.gltf', function (gltf) {
             const model = gltf.scene
+
+            macbook = gltf.scene
+
             gltf.scene.traverse(function (child: any) {
                 if (child.isMesh) {
                     roughnessMidmapper.generateMipmaps(child.material)
@@ -105,8 +95,6 @@ new RGBELoader()
             mixerTouchbar = new THREE.AnimationMixer(model)
             const gltfAnimations: THREE.AnimationClip[] = gltf.animations
 
-            // const ani = mixer.clipAction(gltf.animations[1])
-
             const screenAni1 = mixer.clipAction(gltf.animations[2])
             const screenAni2 = mixer.clipAction(gltf.animations[3])
             const screenAni3 = mixer.clipAction(gltf.animations[4])
@@ -118,8 +106,6 @@ new RGBELoader()
 
             console.log(gltf.animations[2])
 
-            // console.log(gltfAnimations)
-            
             screenAni1.play()
             screenAni2.play()
             screenAni3.play()
@@ -127,18 +113,18 @@ new RGBELoader()
             screenAni5.play()
             screenAni6.play()
             keysAni.play()
-            // touchbarAni.play()
+            touchbarAni.play()
 
             mixerKeys.setTime(0)
+            mixerTouchbar.setTime(0)
 
             mixer.setTime(1.65)
             console.log(mixer.time)
             console.log(keysAni)
 
-            // ani.play()
-
             roughnessMidmapper.dispose()
             render()
+
             gsap.from('canvas', {
                 opacity: 0,
                 delay: 0,
@@ -149,9 +135,8 @@ new RGBELoader()
 
     })
 
-/* SCROLL ANIMATIONS */
-
 /* STARTPOS CAMERA */
+
 var cameraPosX = 0.1
 var cameraPosY = 0.448
 var cameraPosZ = -0.015
@@ -167,18 +152,20 @@ var mixerTimeSaved = false
 
 let textBoxContainer = document.querySelector('.textBoxContainer')!
 
+/* SCROLL ANIMATIONS */
+
 window.onscroll = () => {
     scrollPos = window.scrollY
     // console.log(scrollPos)
     // console.log('MixerTime: ', mixer.time)
-    if (scrollPos < 996) {
-        mixer.setTime(1.65 - (scrollPos / (995/1.65)))
-        cameraPosX = 0.1 - (scrollPos / (995/0.1))
-        cameraPosY = 0.448 - (scrollPos / (995/(0.448 - 0.06)))
-        cameraPosZ = -0.015 + (scrollPos / (995/(0.4 + 0.015)))
+    if (scrollPos < 1088) {
+        mixer.setTime(1.65 - (scrollPos / (1087 / 1.65)))
+        cameraPosX = 0.1 - (scrollPos / (1087 / 0.1))
+        cameraPosY = 0.448 - (scrollPos / (1087 / (0.448 - 0.06)))
+        cameraPosZ = -0.015 + (scrollPos / (1087 / (0.4 + 0.015)))
 
-        cameraRotX = -1.59 + (scrollPos / (995/(1.59)))
-        cameraRotZ = 3.14 - (scrollPos / (995/(3.14)))
+        cameraRotX = -1.59 + (scrollPos / (1087 / (1.59)))
+        cameraRotZ = 3.14 - (scrollPos / (1087 / (3.14)))
 
         camera.position.x = cameraPosX
         camera.position.y = cameraPosY
@@ -187,7 +174,7 @@ window.onscroll = () => {
         camera.rotation.y = cameraRotY
         camera.rotation.z = cameraRotZ
     }
-    if (scrollPos >= 1045 && camera.rotation.z != 0 && snapped == false) {
+    if (scrollPos >= 1087 && camera.rotation.z != 0 && snapped == false) {
         camera.position.x = 0
         camera.position.y = 0.06
         camera.position.z = 0.4
@@ -196,64 +183,144 @@ window.onscroll = () => {
         camera.rotation.z = 0
         snapped = true
     }
-    if (scrollPos >= 1045 && mixerTimeSaved == false) {
+
+    if (scrollPos >= 1087 && mixerTimeSaved == false) {
         mixerTime = mixer.time
-        // console.log('Mixer Snap Time: ', mixerTime)
         mixerTimeSaved = true
     }
-    if (scrollPos >= 1045 && scrollPos <= 1543) {
-        mixer.setTime(0.0066331658291458595 + ((scrollPos - 1045) / (498 / (1.65 - 0.0066331658291458595))))
 
-        cameraPosY = 0.06 + ((scrollPos - 1045) / (498 / (0.41 - 0.06)))
-        cameraPosZ = 0.4 - ((scrollPos - 1045) / (498 / (0.41)))
-        cameraRotX = 0 - ((scrollPos - 1045) / (498 / (1.59)))
-        cameraRotZ = 0 + ((scrollPos - 1045) / (498 / (3.14)))
+    if (scrollPos >= 1087 && scrollPos <= 1605) {
+        mixer.setTime(0.0066331658291458595 + ((scrollPos - 1087) / (518 / (1.65 - 0.0066331658291458595))))
+
+        cameraPosY = 0.06 + ((scrollPos - 1087) / (518 / (0.41 - 0.06)))
+        cameraPosZ = 0.4 - ((scrollPos - 1087) / (518 / (0.41)))
+        cameraRotX = 0 - ((scrollPos - 1087) / (518 / (1.59)))
+        cameraRotZ = 0 + ((scrollPos - 1087) / (518 / (3.14)))
 
         camera.position.y = cameraPosY
         camera.position.z = cameraPosZ
         camera.rotation.x = cameraRotX
         camera.rotation.z = cameraRotZ
 
-        textBoxContainer.setAttribute('style', 'top: ' + (105 + ((scrollPos - 1045) / (498 / 50))) + 'vh;')
+        textBoxContainer.setAttribute('style', 'top: ' + (105 + ((scrollPos - 1087) / (518 / 50))) + 'vh;')
 
         mixerTime = mixer.time
     }
-    if (scrollPos > 1543 && scrollPos <= 2040) {
-        
+    if (scrollPos > 1605 && scrollPos <= 2122) {
+        mixer.setTime(mixerTime - ((scrollPos - 1605) / (517 / (1.65))))
 
-        mixer.setTime(mixerTime - ((scrollPos - 1543) / (497 / (1.65))))
-
-        cameraPosY = 0.41 - ((scrollPos - 1543) / (497 / (0.19)))
-        cameraPosZ = -0.009999999999999953 + ((scrollPos - 1543) / (497 / (0.00999999 + 0.15)))
-        cameraRotX = -1.5900000000000003 + ((scrollPos - 1543) / (497 / (1.59 - 0.35)))
-        cameraRotZ = 3.14 - ((scrollPos - 1543) / (497 / (3.14)))
+        cameraPosY = 0.41 - ((scrollPos - 1605) / (517 / (0.19)))
+        cameraPosZ = -0.009999999999999953 + ((scrollPos - 1605) / (517 / (0.00999999 + 0.15)))
+        cameraRotX = -1.5900000000000003 + ((scrollPos - 1605) / (517 / (1.59 - 0.35)))
+        cameraRotZ = 3.14 - ((scrollPos - 1605) / (517 / (3.14)))
 
         camera.position.y = cameraPosY
         camera.position.z = cameraPosZ
         camera.rotation.x = cameraRotX
         camera.rotation.z = cameraRotZ
 
-        textBoxContainer.setAttribute('style', 'top: ' + (155 + ((scrollPos - 1543) / (497 / 50))) + 'vh;')
+        textBoxContainer.setAttribute('style', 'top: ' + (155 + ((scrollPos - 1605) / (517 / 50))) + 'vh;')
 
     }
-    if (scrollPos > 2040 && scrollPos <= 3041) {
-        // console.log('x: ', camera.position.x, ' y: ', camera.position.y, ' z: ', camera.position.z, ' x: ', camera.rotation.x, ' y: ', camera.rotation.y, ' z: ', camera.rotation.z, )
-        console.log(scrollPos)
 
-        mixerKeys.setTime(0 + ((scrollPos - 2040) / (1000 / (1.659))))
+    if (scrollPos > 2122 && scrollPos <= 3155) {
 
-        cameraPosZ = 0.14549294802816903 + ((scrollPos - 2040) / (1000 / (0.267 - 0.14549294802816903)))
-        cameraRotX = -0.38492957746478895 - ((scrollPos - 2040) / (1000 / (0.72 - 0.38492957746478895)))
+        mixerKeys.setTime(0 + ((scrollPos - 2122) / (1033 / (1.659))))
 
+
+        cameraPosX = 0 + ((scrollPos - 2122) / (1033 / (0.227)))
+        cameraPosY = 0.22535211267605632 - ((scrollPos - 2122) / (1033 / (0.22535211267605632 - 0.18)))
+        cameraPosZ = 0.14549294802816903 + ((scrollPos - 2122) / (1033 / (0.117 - 0.14549294802816903)))
+
+        cameraRotX = -0.38492957746478895 - ((scrollPos - 2122) / (1033 / (0.97 - 0.38492957746478895)))
+        cameraRotY = 0 + ((scrollPos - 2122) / (1033 / (1.02)))
+        cameraRotZ = 0.08845070422535217 + ((scrollPos - 2122) / (1033 / (0.28 - 0.08845070422535217)))
+
+
+        camera.position.x = cameraPosX
+        camera.position.y = cameraPosY
         camera.position.z = cameraPosZ
         camera.rotation.x = cameraRotX
+        camera.rotation.y = cameraRotY
+        camera.rotation.z = cameraRotZ
+    }
+
+    if (scrollPos > 3155 && scrollPos <= 4192) {
+
+        mixerKeys.setTime(1.659 - ((scrollPos - 3155) / (1037 / (1.659))))
+        mixerTouchbar.setTime(0 + ((scrollPos - 2122) / (1037 / (1.65))))
+
+        cameraPosX = 0.227 - ((scrollPos - 3155) / (1037 / (0.267)))
+        cameraPosY = 0.18 + ((scrollPos - 3155) / (1037 / (0.227 - 0.18)))
+        cameraPosZ = 0.117 + ((scrollPos - 3155) / (1037 / (0.227 - 0.117)))
+
+        cameraRotX = -0.97 + ((scrollPos - 3155) / (1037 / (0.97 - 0.6)))
+        cameraRotY = 1.02 - ((scrollPos - 3155) / (1037 / (1.02 + 0.35)))
+        cameraRotZ = 0.28 - ((scrollPos - 3155) / (1037 / (0.28)))
+
+
+        camera.position.x = cameraPosX
+        camera.position.y = cameraPosY
+        camera.position.z = cameraPosZ
+        camera.rotation.x = cameraRotX
+        camera.rotation.y = cameraRotY
+        camera.rotation.z = cameraRotZ
+    }
+
+    if (scrollPos < 3294 && mixerTouchbar.time != 0) {
+        mixerTouchbar.setTime(0)
+    }
+
+    if (scrollPos > 4192 && scrollPos <= 4692) {
+
+        mixerTouchbar.setTime(1.659 - ((scrollPos - 2122) / (500 / (1.659))))
+
+        cameraPosX = -0.04 + ((scrollPos - 4192) / (500 / (0.04)))
+        cameraPosY = 0.227 - ((scrollPos - 4192) / (500 / (0.227 - 0.02)))
+        cameraPosZ = 0.227 + ((scrollPos - 4192) / (500 / (0.337 - 0.227)))
+
+        cameraRotX = -0.6 + ((scrollPos - 4192) / (500 / (0.6)))
+        cameraRotY = -0.35 + ((scrollPos - 4192) / (500 / (0.35)))
+
+
+        camera.position.x = cameraPosX
+        camera.position.y = cameraPosY
+        camera.position.z = cameraPosZ
+        camera.rotation.x = cameraRotX
+        camera.rotation.y = cameraRotY
+    }
+
+    if (scrollPos > 4630 && mixerTouchbar.time != 0) {
+        mixerTouchbar.setTime(0)
+    }
+
+    if (scrollPos > 4192 && scrollPos <= 6264) {
+        mixer.setTime(0 + ((scrollPos - 4192) / (2072 / (1.65))))
+
+        if (macbook) {
+            var rotation = 0 + ((scrollPos - 4192) / (2072 / 6.28))
+            macbook.rotation.y = rotation
+        }
+    }
+    if (scrollPos >= 6260) {
+        if (macbook) {
+            macbook.rotation.y = 0
+        }
     }
 }
 
 // length: 1.6666
 // 2040
+// 4192       3123
 // x:  0        y:  0.22535211267605632         z:  0.14549294802816903                         x:  -0.38492957746478895            y:  0           z:  0.08845070422535217
 // x:  0        y:  0.227                       z:  0.267                                       x:  -0.6                            y:  0           z:  0
+
+// x: 0.227     y: 0.18                         z: 0.117                                        x: -0.97                            y: 1.02         z: 0.28
+// x: -0.04     y: 0.227                        z: 0.227                                        x: -0.6                             y: -0.35        z: 0
+
+// x: 0         y: 0.02                         z: 0.337                                        0 0 0
+
+// 6264
 
 
 /* GUI */
@@ -288,12 +355,6 @@ const clock = new THREE.Clock()
 
 function animate() {
     requestAnimationFrame(animate)
-
-    // controls.update()
-
-    // var delta = clock.getDelta();
-  
-    // if ( mixer ) mixer.update( delta );
 
     render()
 }
@@ -330,6 +391,28 @@ gsap.from('.intro button', {
     duration: 1,
 });
 
+gsap.from('.KBS1 .textBox', {
+    scrollTrigger: {
+        trigger: '.KBS1 .textBox p',
+        start: 'center+=800 center',
+    },
+    opacity: 0,
+    delay: 0.5,
+    x: -300,
+    duration: 1,
+});
+
+gsap.from('.KBS2 .textBox', {
+    scrollTrigger: {
+        trigger: '.KBS2 .textBox p',
+        start: 'center+=800 center',
+    },
+    opacity: 0,
+    delay: 0.5,
+    x: 300,
+    duration: 1,
+});
+
 let sections = gsap.utils.toArray('.horizontal')
 
 let horizontalScroll = gsap.to(sections, {
@@ -340,7 +423,6 @@ let horizontalScroll = gsap.to(sections, {
         pin: true,
         scrub: 1,
         snap: 1 / (sections.length - 1),
-        // end: () => "+=" + document.querySelector('.sideBySide')!.clientWidth
     }
 })
 
@@ -361,11 +443,10 @@ gsap.to('.TBO1', {
     scrollTrigger: {
         containerAnimation: horizontalScroll,
         trigger: '.horizontal0',
-        // start: 'right center',
         end: 'right center',
         onLeave: () => {
             gsap.to('.TBO1', {
-                y:-100,
+                y: -100,
                 opacity: 0,
                 duration: 0.5,
             })
@@ -402,7 +483,7 @@ gsap.from('.TBO2', {
         },
         onLeave: () => {
             gsap.to('.TBO2', {
-                y:-100,
+                y: -100,
                 opacity: 0,
                 duration: 0.5,
                 delay: 0
@@ -453,7 +534,7 @@ gsap.from('.TBO3', {
         },
         onLeave: () => {
             gsap.to('.TBO3', {
-                y:-100,
+                y: -100,
                 opacity: 0,
                 duration: 0.5,
                 delay: 0
@@ -486,4 +567,3 @@ gsap.from('.TBO3', {
     delay: 0
 })
 
-let scrollBtn = document.querySelector('.scrollBtn')!
