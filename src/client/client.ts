@@ -145,7 +145,7 @@ let position = 0
 
 function onMouseWheel(event: any) {
     // console.log(event.deltaY)
-    y = event.deltaY * 0.002
+    y = event.deltaY * 0.0031
 }
 
 const mouse = new THREE.Vector2()
@@ -209,7 +209,7 @@ function animate() {
 function showSpecs(){
 
     const specs1 = document.getElementById("carrouselText1")
-    if (window.scrollY > 100){
+    if (window.scrollY > 250){
         gsap.to(specs1, {
             duration: 3,
             css: {
@@ -217,10 +217,18 @@ function showSpecs(){
                 opacity: 0
             }
         })
+    } else if (window.scrollY < 250){
+        gsap.to(specs1, {
+            duration: 2,
+            css: {
+                top: "1050px",
+                opacity: 1
+            }
+        })
     }
 
     const specs2 = document.getElementById("carrouselText2")
-    if (window.scrollY > 280){
+    if (window.scrollY > 600){
         gsap.to(specs2, {
             duration: 3,
             css: {
@@ -228,15 +236,31 @@ function showSpecs(){
                 opacity: 0
             }
         })
+    } else if (window.scrollY < 250){
+        gsap.to(specs2, {
+            duration: 2,
+            css: {
+                top: "1225px",
+                opacity: 1
+            }
+        })
     }
 
     const specs3 = document.getElementById("carrouselText3")
-    if (window.scrollY > 450){
+    if (window.scrollY > 950){
         gsap.to(specs3, {
             duration: 3,
             css: {
                 top: "900px",
                 opacity: 0
+            }
+        })
+    } else if (window.scrollY < 250){
+        gsap.to(specs3, {
+            duration: 2,
+            css: {
+                top: "1380px",
+                opacity: 1
             }
         })
     }

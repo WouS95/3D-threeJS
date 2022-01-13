@@ -128,25 +128,33 @@ h1 {
 #carrouselText1, #carrouselText2, #carrouselText3 {
     font-family: helvetica, arial, sans-serif;
     font-size: 24px;
+
+    left: 380px;;
 }
 
 #carrouselText1 {
     position: absolute;
-    top: 1250px;
+    top: 1050px;
     color: white;
     z-index: 99;
 }
 
+#subspec {
+    color: white;
+    font-size:17px;
+    font-style: italic;
+}
+
 #carrouselText2 {
     position: absolute;
-    top: 1425px;
+    top: 1225px;
     color: white;
     z-index: 99;
 }
 
 #carrouselText3 {
     position: absolute;
-    top: 1580px;
+    top: 1380px;
     color: white;
     z-index: 99;
 }
@@ -161,9 +169,10 @@ h3 {
     color: white;
     font-family: helvetica, arial, sans-serif;
     font-size: 30px;
+    font-weight: light;
 
     position: absolute;
     top: 900px;
-    left: 500px;
+    left: 240px;
     z-index: 99;
 }
