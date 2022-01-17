@@ -4,32 +4,32 @@
 
 @font-face{
     font-family: "MaisonBold";
-    src: url('/MaisonNeue/MaisonNeue-Bold.ttf'),
-    url('/MaisonNeue/MaisonNeue-Bold.ttf'); 
+    src: url('MaisonNeue/MaisonNeue-Bold.ttf'),
+    url('MaisonNeue/MaisonNeue-Bold.ttf'); 
 }
 
 @font-face{
     font-family: "MaisonDemi";
-    src: url('/MaisonNeue/MaisonNeue-Demi.ttf'),
-    url('/MaisonNeue/MaisonNeue-Demi.ttf'); 
+    src: url('MaisonNeue/MaisonNeue-Demi.ttf'),
+    url('MaisonNeue/MaisonNeue-Demi.ttf'); 
 }
 
 @font-face{
     font-family: "MaisonMedium";
-    src: url('/MaisonNeue/MaisonNeue-Medium.ttf'),
-    url('/MaisonNeue/MaisonNeue-Medium.ttf'); 
+    src: url('MaisonNeue/MaisonNeue-Medium.ttf'),
+    url('MaisonNeue/MaisonNeue-Medium.ttf'); 
 }
 
 @font-face{
     font-family: "MaisonBook";
-    src: url('/MaisonNeue/MaisonNeue-Book.ttf'),
-    url('/MaisonNeue/MaisonNeue-Book.ttf'); 
+    src: url('MaisonNeue/MaisonNeue-Book.ttf'),
+    url('MaisonNeue/MaisonNeue-Book.ttf'); 
 }
 
 @font-face{
     font-family: "MaisonLight";
-    src: url('/MaisonNeue/MaisonNeue-Light.ttf'),
-    url('/MaisonNeue/MaisonNeue-Light.ttf'); 
+    src: url('MaisonNeue/MaisonNeue-Light.ttf'),
+    url('MaisonNeue/MaisonNeue-Light.ttf'); 
 }
 
 /* STYLING */

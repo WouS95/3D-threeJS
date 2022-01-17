@@ -28,17 +28,18 @@ const animationFive = document.getElementById('animationFive') as HTMLCanvasElem
 
 ////scene 1 backgroundcolor is dark purple-grey
 const sceneOne = new THREE.Scene()
-sceneOne.background = new THREE.Color(0x312F3C)
+// sceneOne.background = new THREE.Color(0x312F3C)
+sceneOne.background = new THREE.Color(0x242424)
 
 //////scene 2 & 3 & 4 white background
 const sceneTwo = new THREE.Scene()
-sceneTwo.background = new THREE.Color(0xffffff)
+sceneTwo.background = new THREE.Color(0xffffff)/////////
 
 const sceneThree = new THREE.Scene()
-sceneThree.background = new THREE.Color(0xffffff)
+sceneThree.background = new THREE.Color(0xF6F6F6)////////////
 
 const sceneFour = new THREE.Scene()
-sceneFour.background = new THREE.Color(0xffffff)
+sceneFour.background = new THREE.Color(0xffffff)//////////////
 
 const sceneFive = new THREE.Scene()
 sceneFive.background = new THREE.Color(0xffffff)
@@ -142,15 +143,30 @@ window.addEventListener("scroll", function() {
     log(window.innerHeight)
 
     if(t > (window.innerHeight*0.9)){
+        log("start animation 4")
+        playAnimationFour = true
+        if (!setupanimation4){
+            setUpAnimation4()
+            setupanimation4 = true
+        }
+    }
+    else{
+        playAnimationFour = false
+    }
+
+    if (t>(this.window.innerHeight*1.9)){
+               
         log("start animation 2")
         playAnimationTwo = true
     }
 
     else {
         playAnimationTwo = false
+    
     }
 
-    if (t>(this.window.innerHeight*1.9)){
+    if (t>(this.window.innerHeight*3)){
+
         log("start animation 3")
         playAnimationThree = true
         if (!setupanimation3){
@@ -161,17 +177,65 @@ window.addEventListener("scroll", function() {
     else{
         playAnimationThree = false
     }
+    if (t>(this.window.innerHeight*4)){
+        window.addEventListener('mousemove', e =>{
 
-    if (t>(this.window.innerHeight*3)){
-        log("start animation 4")
-        playAnimationFour = true
-        if (!setupanimation4){
-            setUpAnimation4()
-            setupanimation4 = true
-        }
-    }
-    else{
-        playAnimationFour = false
+            var mouse = new THREE.Vector2();
+            mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+            mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+        
+            var raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera( mouse, orthocam );
+            var intersectsBlack = raycaster.intersectObject( colorCircleBlack );
+            var intersectsSilver = raycaster.intersectObject( colorCircleSilver );
+            var intersectsWhite = raycaster.intersectObject( colorCircleWhite );
+            var intersectsBlue = raycaster.intersectObject( colorCircleBlue );
+            var intersectsGold = raycaster.intersectObject( colorCircleGold );
+        
+            var intersectPhonePro = raycaster.intersectObject( phoneVar2)
+            var intersectPhoneLite = raycaster.intersectObject (phoneSilver)
+        
+            if(intersectsBlack.length > 0) {
+                setAllColorPositionsTo0()
+                phoneBlackSceneFive.visible = true
+                log("hovering over black")
+            }
+            if(intersectsSilver.length > 0) {
+                setAllColorPositionsTo0()
+                phoneSilverSceneFive.visible = true
+                log("hovering over silver")
+            }
+            if(intersectsWhite.length > 0) {
+                setAllColorPositionsTo0()
+                phoneWhiteSceneFive.visible = true
+                log("hovering over white")
+            }
+            if(intersectsBlue.length > 0) {
+                setAllColorPositionsTo0()
+                phoneBlueSceneFive.visible = true
+                log("hovering over blue")
+            }
+            if(intersectsGold.length > 0) {
+                setAllColorPositionsTo0()
+                phoneGoldSceneFive.visible = true
+                log("hovering over gold")
+            }
+            if(intersectPhonePro.length > 0) {
+                log("hovering over phone pro")
+                // phoneVar2.rotation.y +=0.1
+                // window.addEventListener('mousedown', e =>{
+                //     tl.to(phoneVar2.rotation, {z: Math.PI , duration: 1.5} )
+                // })
+                //replace("fillertext", "b;ab;a")
+                // document.getElementById("animation2")?.style.opacity.replace("0", "1")
+                //replaceWith("Met een scherm van 21 inches en een geweicht van slechts 211 gr is de YouPhone Pro de beste op de markt. Al vanaf euro 399,99")
+            }
+            if(intersectPhoneLite.length > 0) {
+                log("hovering over phone lite")
+                // phoneSilver.rotation.y +=0.1
+            }
+        
+        })
     }
 })
 
@@ -196,8 +260,8 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
 
     phoneBlackSceneFive = phoneBlack.clone()
     phoneBlackSceneFive.scale.set(2,2,2)
-    phoneBlackSceneFive.position.set(-3.5,0,1)
-    phoneBlackSceneFive.visible = false
+    phoneBlackSceneFive.position.set(-1.5,0,1)
+    // phoneBlackSceneFive.visible = false
     sceneFive.add(phoneBlackSceneFive)
 })
 
@@ -225,7 +289,7 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
 
     phoneWhiteSceneFive = phoneWhite.clone()
     phoneWhiteSceneFive.scale.set(2,2,2)
-    phoneWhiteSceneFive.position.set(-3.5,0,1)
+    phoneWhiteSceneFive.position.set(-1.5,0,1)
     phoneWhiteSceneFive.visible = false
     sceneFive.add(phoneWhiteSceneFive)
 })
@@ -240,7 +304,7 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh){
             if (child.material.name == "phone_color"){
-                child.material.color = new THREE.Color(0x996515)
+                child.material.color = new THREE.Color(0xC99548)
                 child.material.metalness = 0.8
             }
         }
@@ -254,7 +318,7 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     sceneFour.add(phoneGoldSceneFour)
     phoneGoldSceneFive = phoneGold.clone()
     phoneGoldSceneFive.scale.set(2,2,2)
-    phoneGoldSceneFive.position.set(-3.5,0,1)
+    phoneGoldSceneFive.position.set(-1.5,0,1)
     phoneGoldSceneFive.rotation.y = Math.PI
     phoneGoldSceneFive.visible = false
     sceneFive.add(phoneGoldSceneFive)
@@ -272,14 +336,14 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     // LightRightFolder.add(lightRight2.position, 'z', -10, 200)
     // lightFolder.open()
 
-const textTexture= new TextureLoader().load('assets/noemi/phone/knipsel.PNG')
-const textGeometry = new THREE.PlaneBufferGeometry(3,2)
-const textMaterial = new THREE.MeshBasicMaterial({map: textTexture})
-const textFieldPhones = new THREE.Mesh(textGeometry, textMaterial)
-textFieldPhones.position.z = -0.5
-textFieldPhones.position.y = 5
+// const textTexture= new TextureLoader().load('assets/noemi/phone/knipsel.PNG')
+// const textGeometry = new THREE.PlaneBufferGeometry(3,2)
+// const textMaterial = new THREE.MeshBasicMaterial({map: textTexture})
+// const textFieldPhones = new THREE.Mesh(textGeometry, textMaterial)
+// textFieldPhones.position.z = -0.5
+// textFieldPhones.position.y = 5
 
-sceneTwo.add(textFieldPhones)
+// sceneTwo.add(textFieldPhones)
 //////loads the phones for scene 2
 var phoneVar2 = new THREE.Object3D()
 loader.load('assets/noemi/phone/phone_v3-unjoined.gltf', (gltf) => {
@@ -317,7 +381,7 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
 
     phoneSilverSceneFive = phoneSilver.clone()
     phoneSilverSceneFive.scale.set(2,2,2)
-    phoneSilverSceneFive.position.set(-3.5,0,1)
+    phoneSilverSceneFive.position.set(-1.5,0,1)
     phoneSilverSceneFive.rotation.y = Math.PI
     phoneSilverSceneFive.visible = false
     sceneFive.add(phoneSilverSceneFive)
@@ -369,7 +433,7 @@ function setUpAnimation3(){
 
         phoneBlueSceneFive = bluePhone.clone()
         phoneBlueSceneFive.scale.set(2,2,2)
-        phoneBlueSceneFive.position.set(-3.5,0,1)
+        phoneBlueSceneFive.position.set(-1.5,0,1)
         phoneBlueSceneFive.visible = false
         sceneFive.add(phoneBlueSceneFive)
     })
@@ -385,67 +449,110 @@ const colorCircleGeometry = new THREE.CircleBufferGeometry(.5,36)
 const blueMaterial = new THREE.MeshBasicMaterial({ color: 0x8fc9d9 })
 const blackMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 })
 const whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
-const goldMaterial = new THREE.MeshBasicMaterial({ color: 0x996515 })
+const goldMaterial = new THREE.MeshBasicMaterial({ color: 0xC99548 })
 const silverMaterial = new THREE.MeshBasicMaterial({ color: 0xcecece })
 // colorCircleMaterial.color = new THREE.Color(0x8fc9d9)
 const colorCircleBlack = new THREE.Mesh(colorCircleGeometry, blackMaterial)
-colorCircleBlack.position.set(0,2.5,0)
+colorCircleBlack.position.set(1.5,2.5,0)
 sceneFive.add(colorCircleBlack)
 const colorCircleSilver = new THREE.Mesh(colorCircleGeometry, silverMaterial)
-colorCircleSilver.position.set(0,1.25,0)
+colorCircleSilver.position.set(1.5,1.25,0)
 sceneFive.add(colorCircleSilver)
 const outlineWhite = colorCircleBlack.clone()
 outlineWhite.scale.set(1.04,1.04,1.04)
-outlineWhite.position.set(0,0,0)
+outlineWhite.position.set(1.5,0,0)
 sceneFive.add(outlineWhite)
 const colorCircleWhite = new THREE.Mesh(colorCircleGeometry, whiteMaterial)
-colorCircleWhite.position.set(0,0,0)
+colorCircleWhite.position.set(1.5,0,0)
 sceneFive.add(colorCircleWhite)
 const colorCircleBlue = new THREE.Mesh(colorCircleGeometry, blueMaterial)
-colorCircleBlue.position.set(0,-1.25,0)
+colorCircleBlue.position.set(1.5,-1.25,0)
 sceneFive.add(colorCircleBlue)
 const colorCircleGold = new THREE.Mesh(colorCircleGeometry, goldMaterial)
-colorCircleGold.position.set(0,-2.5,0)
+colorCircleGold.position.set(1.5,-2.5,0)
 sceneFive.add(colorCircleGold)
 
-window.addEventListener('mousemove', e =>{
+// window.addEventListener('mousemove', e =>{
 
+//     var mouse = new THREE.Vector2();
+//     mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+//     mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+
+//     var raycaster = new THREE.Raycaster();
+//     raycaster.setFromCamera( mouse, orthocam );
+//     var intersectsBlack = raycaster.intersectObject( colorCircleBlack );
+//     var intersectsSilver = raycaster.intersectObject( colorCircleSilver );
+//     var intersectsWhite = raycaster.intersectObject( colorCircleWhite );
+//     var intersectsBlue = raycaster.intersectObject( colorCircleBlue );
+//     var intersectsGold = raycaster.intersectObject( colorCircleGold );
+
+//     var intersectPhonePro = raycaster.intersectObject( phoneVar2)
+//     var intersectPhoneLite = raycaster.intersectObject (phoneSilver)
+
+//     if(intersectsBlack.length > 0) {
+//         setAllColorPositionsTo0()
+//         phoneBlackSceneFive.visible = true
+//         log("hovering over black")
+//     }
+//     if(intersectsSilver.length > 0) {
+//         setAllColorPositionsTo0()
+//         phoneSilverSceneFive.visible = true
+//         log("hovering over silver")
+//     }
+//     if(intersectsWhite.length > 0) {
+//         setAllColorPositionsTo0()
+//         phoneWhiteSceneFive.visible = true
+//         log("hovering over white")
+//     }
+//     if(intersectsBlue.length > 0) {
+//         setAllColorPositionsTo0()
+//         phoneBlueSceneFive.visible = true
+//         log("hovering over blue")
+//     }
+//     if(intersectsGold.length > 0) {
+//         setAllColorPositionsTo0()
+//         phoneGoldSceneFive.visible = true
+//         log("hovering over gold")
+//     }
+//     if(intersectPhonePro.length > 0) {
+//         log("hovering over phone pro")
+//         // phoneVar2.rotation.y +=0.1
+//         // window.addEventListener('mousedown', e =>{
+//         //     tl.to(phoneVar2.rotation, {z: Math.PI , duration: 1.5} )
+//         // })
+//         //replace("fillertext", "b;ab;a")
+//         // document.getElementById("animation2")?.style.opacity.replace("0", "1")
+//         //replaceWith("Met een scherm van 21 inches en een geweicht van slechts 211 gr is de YouPhone Pro de beste op de markt. Al vanaf euro 399,99")
+//     }
+//     if(intersectPhoneLite.length > 0) {
+//         log("hovering over phone lite")
+//         // phoneSilver.rotation.y +=0.1
+//     }
+
+// })
+
+window.addEventListener('mousedown', e =>{
     var mouse = new THREE.Vector2();
     mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
 
     var raycaster = new THREE.Raycaster();
     raycaster.setFromCamera( mouse, orthocam );
-    var intersectsBlack = raycaster.intersectObject( colorCircleBlack );
-    var intersectsSilver = raycaster.intersectObject( colorCircleSilver );
-    var intersectsWhite = raycaster.intersectObject( colorCircleWhite );
-    var intersectsBlue = raycaster.intersectObject( colorCircleBlue );
-    var intersectsGold = raycaster.intersectObject( colorCircleGold );
 
-    if(intersectsBlack.length > 0) {
-        setAllColorPositionsTo0()
-        phoneBlackSceneFive.visible = true
-        log("hovering over black")
+    var intersectPhonePro = raycaster.intersectObject( phoneVar2)
+    var intersectPhoneLite = raycaster.intersectObject (phoneSilver)
+    if(intersectPhonePro.length>0) {
+        log("clicking on phone pro")
+        // phoneVar2.rotation.y +=0.1
+            tl.to(phoneVar2.rotation, {y: phoneVar2.rotation.y+Math.PI , duration: 1.5} )
+        
+        //replace("fillertext", "b;ab;a")
+        // document.getElementById("animation2")?.style.opacity.replace("0", "1")
+        //replaceWith("Met een scherm van 21 inches en een geweicht van slechts 211 gr is de YouPhone Pro de beste op de markt. Al vanaf euro 399,99")
     }
-    if(intersectsSilver.length > 0) {
-        setAllColorPositionsTo0()
-        phoneSilverSceneFive.visible = true
-        log("hovering over silver")
-    }
-    if(intersectsWhite.length > 0) {
-        setAllColorPositionsTo0()
-        phoneWhiteSceneFive.visible = true
-        log("hovering over white")
-    }
-    if(intersectsBlue.length > 0) {
-        setAllColorPositionsTo0()
-        phoneBlueSceneFive.visible = true
-        log("hovering over blue")
-    }
-    if(intersectsGold.length > 0) {
-        setAllColorPositionsTo0()
-        phoneGoldSceneFive.visible = true
-        log("hovering over gold")
+    if(intersectPhoneLite.length>0) {
+        log("hovering over phone lite")
+        tl.to(phoneSilver.rotation, {y: phoneSilver.rotation.y+Math.PI , duration: 1.5} )
     }
 
 })
@@ -474,20 +581,18 @@ function animate() {
         rendererOne.render(sceneOne, camera)
     }
     if (playAnimationTwo){
-        if (phoneVar2.position.x > -2.5){
+        if (phoneVar2.position.x > -2){
             phoneVar2.position.x -= 0.025
             phoneVar2.rotation.y += 0.008
             phoneVar2.scale.x -= 0.0015
         }
-        if (phoneSilver.position.x < 2.5){
+        if (phoneSilver.position.x < 2){
             phoneSilver.position.x += 0.025
             phoneSilver.rotation.y -= 0.008
             phoneSilver.scale.x -= 0.0015
         }
-        if (textFieldPhones.position.y > 0.25){
-            textFieldPhones.position.y -= 0.045
-            log("dropping tekst")
-        }
+
+        log("text moet verschijnen")
         rendererTwo.render(sceneTwo, camera)
 
     }
