@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/* FONTS */
+
+@font-face{
+    font-family: "MaisonBold";
+    src: url('/MaisonNeue/MaisonNeue-Bold.ttf'),
+    url('/style/MaisonNeue/MaisonNeue-Bold.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonDemi";
+    src: url('/MaisonNeue/MaisonNeue-Demi.ttf'),
+    url('/style/MaisonNeue/MaisonNeue-Demi.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonMedium";
+    src: url('/MaisonNeue/MaisonNeue-Medium.ttf'),
+    url('/style/MaisonNeue/MaisonNeue-Medium.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonBook";
+    src: url('/MaisonNeue/MaisonNeue-Book.ttf'),
+    url('/style/MaisonNeue/MaisonNeue-Book.ttf'); 
+}
+
+@font-face{
+    font-family: "MaisonLight";
+    src: url('/MaisonNeue/MaisonNeue-Light.ttf'),
+    url('/style/MaisonNeue/MaisonNeue-Light.ttf'); 
+}
+
+/* STYLING */
+* {
+    font-family: 'MaisonBook';
+}
+
+h1 {
+    font-family: 'MaisonDemi';
+    font-size: 70px;
+    margin: 10px 0 40px 0;
+}
+
+.whiteText {
+    color: white;
+}
+
+p {
+    font-size: 20px;
+    line-height: 26px;
+    margin: 0;
+}
+
+.preTitle {
+    text-transform: lowercase;
+}
+
+button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.button {
+    font-family: 'MaisonMedium';
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    border-width: 0;
+    color: #242424;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 12px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.whiteBG {
+    background-color: #F0F0F0;
+}
+
+.blackBG {
+    background-color: #242424;
+}

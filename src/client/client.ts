@@ -28,7 +28,7 @@ const visualCamera = new THREE.PerspectiveCamera(75, 1280 / 800, 0.1, 1000)
 const productCamera = new THREE.PerspectiveCamera(75, 1920 / 800, 0.1, 1000)
 heroCamera.position.z = 4
 visualCamera.position.z = 2
-productCamera.position.z = 3
+productCamera.position.z = 4
 
 let headphone1: any
 const loader = new GLTFLoader()
@@ -237,7 +237,9 @@ function animate() {
     animateLights()
 
     plane.rotation.z += 0.0015
-    // headphone1.rotation.y += 0.05
+    if(headphone1){
+        headphone1.scene.rotation.y += 0.03
+    }
 
     // SINE WAVE
     // const now = Date.now() / 1000;

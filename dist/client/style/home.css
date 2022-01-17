@@ -1,19 +1,26 @@
 body {
     height: 5000px;
     background-color: black;
+    color: white;
 }
 
 h1 {
-    /* color: black; */
-    color: white;
-    position: absolute;
-    margin-top: 300px;
-    /* margin-top: 260px; */
-    margin-left: 5%;
     z-index: 10;
-
-    font-family: helvetica, arial, sans-serif;
     font-size: 78px;
+}
+
+.heroText {
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    z-index: 10;
+}
+
+.headphoneText {   
+    position: absolute;
+    top: 2300px;
+    left: 100px;
+    z-index: 10;
 }
 
 #subtitle {
@@ -23,11 +30,8 @@ h1 {
     top: 440px;
 
     margin-left: 5%;
-
-    font-family: helvetica, arial, sans-serif;
     font-size: 24px;
 
-    color: white;
 }
 
 #header {
@@ -42,7 +46,6 @@ h1 {
     /* border: 3px solid red; */
     /* border: 3px solid red; */
     margin: 0 auto;
-    position: relative;
 
     width: 1920px;
     /* width: 1920px; */
@@ -61,7 +64,7 @@ h1 {
     /* border: 3px solid red; */
     /* border: 3px solid red; */
     margin: auto;
-
+    z-index: 1;
     width: 1920px;
     height: 800px;
 }
@@ -95,7 +98,6 @@ h1 {
     border: none;
 
     text-align: center;
-    font-family: helvetica, arial, sans-serif;
     font-size: 16px;
     border-radius: 5px;
     text-decoration: none;
@@ -104,11 +106,9 @@ h1 {
 #carrouselVisual {
     /* border: 3px solid blue; */
     /* border: 3px solid blue; */
-    position: absolute;
     /* z-index: 1; */
     margin: auto;
-    top: 890px;
-
+    margin-top: 890px;
     width: 100%;
     height: 800px;
 }
@@ -123,12 +123,11 @@ h1 {
     width: 100%;
     height: 800px;
 
-    z-index: 99;
+    z-index: 1;
     /* background-color: black; */
 }
 
 #carrouselText1, #carrouselText2, #carrouselText3 {
-    font-family: helvetica, arial, sans-serif;
     font-size: 24px;
 
     left: 380px;;
@@ -161,20 +160,12 @@ h1 {
     z-index: 99;
 }
 
-/* #carrouselText4 {
-    position: absolute;
-    top: 1780px;
-    color: white;
-    z-index: 99;
-} */
 h3 {
     color: white;
-    font-family: helvetica, arial, sans-serif;
     font-size: 30px;
-    font-weight: light;
-
     position: absolute;
     top: 900px;
     left: 240px;
     z-index: 99;
+    font-family: "MaisonBold", san-serif;
 }
