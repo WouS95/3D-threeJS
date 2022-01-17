@@ -6,10 +6,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>MacBook Pro</title>
         <style>
+            /* HEADER CSS */
+
+        .header {
+            height: 60px;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 20px;
+            left: 0;
+            z-index: 9999999999;
+            justify-content: center;
+        }
+
+        .headerContent {
+            display: flex;
+            align-items: center;
+            width: 30vw;
+            height: 100%;
+            background-color: rgba(36, 36, 36, 0.5);
+            justify-content: space-evenly;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .headerContent .title {
+            color: white;
+            font-family: MaisonDemi;
+            font-size: 22px;
+        }
+
+        .headerContent a {
+            text-decoration: none;
+            color: #d2d2d2;
+            font-family: MaisonBook;
+        }
+
         </style>
     </head>
 
     <body>
+        <div class="header">
+            <div class="headerContent">
+                <a href="">home</a>
+                <div class="title">3Store</div>
+                <a href="">catalogue</a>
+            </div>
+        </div>
+
         <div id="guiContainer"></div>    
         
         <section class="intro">
