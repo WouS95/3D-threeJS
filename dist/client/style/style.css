@@ -92,7 +92,7 @@ button {
     background-color: #242424;
 }
 
-/* .header {
+.header {
     height: 60px;
     width: 100vw;
     display: flex;
@@ -102,7 +102,7 @@ button {
     left: 0;
     z-index: 9999999999;
     justify-content: center;
-} */
+}
 
 .headerContent {
     display: flex;
