@@ -55,9 +55,9 @@ sceneOne.add(lightRight)
 
 const ambiLight2 = new THREE.AmbientLight(0xffffff, 1)
 const lightLeft2 = new THREE.PointLight(0xffffff, 1, 100, 1)
-lightLeft2.position.set(50, 20, 50);
+lightLeft2.position.set(50, 25, 50);
 const lightRight2 = new THREE.PointLight(0xffffff, 1, 100, 1)
-lightRight2.position.set(-50, 20, 50);
+lightRight2.position.set(-50, 25, 50);
 sceneTwo.add(ambiLight2)
 sceneTwo.add(lightLeft2)
 sceneTwo.add(lightRight2)
@@ -127,7 +127,6 @@ function onWindowResize() {
     rendererThree.setSize(window.innerWidth, window.innerHeight)
     rendererFour.setSize(window.innerWidth, window.innerHeight)
     rendererFive.setSize(window.innerWidth, window.innerHeight)
-    render()
 }
 
 let playAnimationTwo = false
@@ -220,20 +219,13 @@ window.addEventListener("scroll", function () {
                 phoneGoldSceneFive.visible = true
                 log("hovering over gold")
             }
-            if (intersectPhonePro.length > 0) {
-                log("hovering over phone pro")
-                // phoneVar2.rotation.y +=0.1
-                // window.addEventListener('mousedown', e =>{
-                //     tl.to(phoneVar2.rotation, {z: Math.PI , duration: 1.5} )
-                // })
-                //replace("fillertext", "b;ab;a")
-                // document.getElementById("animation2")?.style.opacity.replace("0", "1")
-                //replaceWith("Met een scherm van 21 inches en een geweicht van slechts 211 gr is de YouPhone Pro de beste op de markt. Al vanaf euro 399,99")
-            }
-            if (intersectPhoneLite.length > 0) {
-                log("hovering over phone lite")
-                // phoneSilver.rotation.y +=0.1
-            }
+            // if (intersectPhonePro.length > 0) {
+            //     log("hovering over phone pro")
+                
+            // }
+            // if (intersectPhoneLite.length > 0) {
+            //     log("hovering over phone lite")
+            // }
 
         })
     }
@@ -245,7 +237,6 @@ var phoneBlack = new THREE.Object3D()
 var phoneBlackSceneFive = new THREE.Object3D()
 loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     gltf.scene.position.set(-1.2, -3.25, 0)
-    // gltf.scene.scale.set(0.2,0.2,0.2)
     gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
             if (child.material.name == "phone_color") {
@@ -261,7 +252,6 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     phoneBlackSceneFive = phoneBlack.clone()
     phoneBlackSceneFive.scale.set(2, 2, 2)
     phoneBlackSceneFive.position.set(-1.5, 0, 1)
-    // phoneBlackSceneFive.visible = false
     sceneFive.add(phoneBlackSceneFive)
 })
 
@@ -271,7 +261,6 @@ var phoneWhite = new THREE.Object3D()
 var phoneWhiteSceneFive = new THREE.Object3D()
 loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     gltf.scene.position.set(1.2, -3.25, 0)
-    // gltf.scene.scale.set(0.2,0.2,0.2)
 
     gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
@@ -284,7 +273,6 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     })
 
     phoneWhite = gltf.scene
-    // phoneWhite.visible = false
     sceneOne.add(gltf.scene)
 
     phoneWhiteSceneFive = phoneWhite.clone()
@@ -299,7 +287,6 @@ var phoneGoldSceneFour = new THREE.Object3D()
 var phoneGoldSceneFive = new THREE.Object3D()
 loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     gltf.scene.position.set(0, -3.25, 0)
-    // gltf.scene.scale.set(0.2,0.2,0.2)
     gltf.scene.rotation.y = Math.PI
     gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
@@ -347,8 +334,8 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
 //////loads the phones for scene 2
 var phoneVar2 = new THREE.Object3D()
 loader.load('assets/noemi/phone/phone_v3-unjoined.gltf', (gltf) => {
-    gltf.scene.position.set(0, 0.65, -0.1)
-    // gltf.scene.scale.set(0.2,0.2,0.2)
+    gltf.scene.position.set(0, 0.2, -0.3)
+    gltf.scene.scale.set(1.8,1.8,1.8)
     gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
             console.log(child)
@@ -366,10 +353,9 @@ var phoneSilverSceneFive = new THREE.Object3D()
 loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     gltf.scene.position.set(0, 0, 0.1)
     gltf.scene.rotation.y = Math.PI
-    gltf.scene.scale.set(0.9, 0.9, 0.9)
+    gltf.scene.scale.set(1.8, 1.8, 1.8)
     gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
-            // phoneSilver = child as THREE.Mesh
             if (child.material.name == "phone_color") {
                 child.material.color = new THREE.Color(0xe8e8e8)
                 child.material.metalness = 0.95
@@ -386,7 +372,7 @@ loader.load('assets/noemi/phone/phone_v3.4.gltf', (gltf) => {
     phoneSilverSceneFive.visible = false
     sceneFive.add(phoneSilverSceneFive)
 })
-// sceneTwo.overrideMaterial = new THREE.MeshBasicMaterial({color: 'gold'});
+// sceneTwo.overrideMaterial = new THREE.MeshNormalMaterial()
 
 const flashTexture = new TextureLoader().load('assets/noemi/phone/camflash.png')
 const flashGeometry = new THREE.PlaneBufferGeometry()
@@ -451,7 +437,6 @@ const blackMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 })
 const whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
 const goldMaterial = new THREE.MeshBasicMaterial({ color: 0xC99548 })
 const silverMaterial = new THREE.MeshBasicMaterial({ color: 0xcecece })
-// colorCircleMaterial.color = new THREE.Color(0x8fc9d9)
 const colorCircleBlack = new THREE.Mesh(colorCircleGeometry, blackMaterial)
 colorCircleBlack.position.set(1.5, 2.5, 0)
 sceneFive.add(colorCircleBlack)
@@ -472,65 +457,6 @@ const colorCircleGold = new THREE.Mesh(colorCircleGeometry, goldMaterial)
 colorCircleGold.position.set(1.5, -2.5, 0)
 sceneFive.add(colorCircleGold)
 
-// window.addEventListener('mousemove', e =>{
-
-//     var mouse = new THREE.Vector2();
-//     mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
-//     mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
-
-//     var raycaster = new THREE.Raycaster();
-//     raycaster.setFromCamera( mouse, orthocam );
-//     var intersectsBlack = raycaster.intersectObject( colorCircleBlack );
-//     var intersectsSilver = raycaster.intersectObject( colorCircleSilver );
-//     var intersectsWhite = raycaster.intersectObject( colorCircleWhite );
-//     var intersectsBlue = raycaster.intersectObject( colorCircleBlue );
-//     var intersectsGold = raycaster.intersectObject( colorCircleGold );
-
-//     var intersectPhonePro = raycaster.intersectObject( phoneVar2)
-//     var intersectPhoneLite = raycaster.intersectObject (phoneSilver)
-
-//     if(intersectsBlack.length > 0) {
-//         setAllColorPositionsTo0()
-//         phoneBlackSceneFive.visible = true
-//         log("hovering over black")
-//     }
-//     if(intersectsSilver.length > 0) {
-//         setAllColorPositionsTo0()
-//         phoneSilverSceneFive.visible = true
-//         log("hovering over silver")
-//     }
-//     if(intersectsWhite.length > 0) {
-//         setAllColorPositionsTo0()
-//         phoneWhiteSceneFive.visible = true
-//         log("hovering over white")
-//     }
-//     if(intersectsBlue.length > 0) {
-//         setAllColorPositionsTo0()
-//         phoneBlueSceneFive.visible = true
-//         log("hovering over blue")
-//     }
-//     if(intersectsGold.length > 0) {
-//         setAllColorPositionsTo0()
-//         phoneGoldSceneFive.visible = true
-//         log("hovering over gold")
-//     }
-//     if(intersectPhonePro.length > 0) {
-//         log("hovering over phone pro")
-//         // phoneVar2.rotation.y +=0.1
-//         // window.addEventListener('mousedown', e =>{
-//         //     tl.to(phoneVar2.rotation, {z: Math.PI , duration: 1.5} )
-//         // })
-//         //replace("fillertext", "b;ab;a")
-//         // document.getElementById("animation2")?.style.opacity.replace("0", "1")
-//         //replaceWith("Met een scherm van 21 inches en een geweicht van slechts 211 gr is de YouPhone Pro de beste op de markt. Al vanaf euro 399,99")
-//     }
-//     if(intersectPhoneLite.length > 0) {
-//         log("hovering over phone lite")
-//         // phoneSilver.rotation.y +=0.1
-//     }
-
-// })
-
 window.addEventListener('mousedown', e => {
     var mouse = new THREE.Vector2();
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -543,12 +469,8 @@ window.addEventListener('mousedown', e => {
     var intersectPhoneLite = raycaster.intersectObject(phoneSilver)
     if (intersectPhonePro.length > 0) {
         log("clicking on phone pro")
-        // phoneVar2.rotation.y +=0.1
         tl.to(phoneVar2.rotation, { y: phoneVar2.rotation.y + Math.PI, duration: 1.5 })
 
-        //replace("fillertext", "b;ab;a")
-        // document.getElementById("animation2")?.style.opacity.replace("0", "1")
-        //replaceWith("Met een scherm van 21 inches en een geweicht van slechts 211 gr is de YouPhone Pro de beste op de markt. Al vanaf euro 399,99")
     }
     if (intersectPhoneLite.length > 0) {
         log("hovering over phone lite")
@@ -583,17 +505,17 @@ function animate() {
     if (playAnimationTwo) {
         if (phoneVar2.position.x > -2) {
             phoneVar2.position.x -= 0.025
-            phoneVar2.rotation.y += 0.008
+            phoneVar2.rotation.y += 0.0065
             phoneVar2.scale.x -= 0.0015
         }
         if (phoneSilver.position.x < 2) {
             phoneSilver.position.x += 0.025
-            phoneSilver.rotation.y -= 0.008
+            phoneSilver.rotation.y -= 0.0065
             phoneSilver.scale.x -= 0.0015
         }
 
         log("text moet verschijnen")
-        rendererTwo.render(sceneTwo, camera)
+        rendererTwo.render(sceneTwo, orthocam)
 
     }
     if (playAnimationThree) {
@@ -620,11 +542,5 @@ function animate() {
     rendererFive.render(sceneFive, orthocam)
 }
 
-function render() {
-    // rendererOne.render(sceneOne, camera)
-    // rendererTwo.render(sceneTwo, camera)
-    // rendererThree.render(sceneThree, orthocam)
-    // rendererFour.render(sceneFour, camera)
-}
 
 animate()
