@@ -1,18 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Three.js TypeScript Tutorials by Sean Bradley</title>
-        <style>
-            body {
-                overflow: hidden;
-                margin: 0px;
-            }
-        </style>
-    </head>
 
-    <body>
-        <script type="module" src="bundle.js"></script>
-    </body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+    <title>Three.js TypeScript Tutorials by Sean Bradley</title>
+    <style>
+        body {
+            margin: 0px;
+            /* background-color: #0A0429; */
+            /* height: 900vh; */
+        }
+
+        canvas {
+            position: fixed;
+
+        }
+    </style>
+</head>
+
+<body class="blackBG">
+    <div class="header">
+        <div class="headerContent">
+            <a href="">home</a>
+            <div class="title">3Store</div>
+            <a href="">catalogue</a>
+        </div>
+    </div>
+    <div id="producten">
+        <div id="product0">
+            <p class="preTitle">introducing the new</p>
+            <h1 class="title">Brumpods Pro Max</h1>
+            <p>Nieuwe headphones met een echte microfoon<br>
+                Groen logo aan de zijkant.<br>
+                Lekker muziek luisteren<br>
+                En alles draadloos
+            </p>
+            <button class="button">Specificaties</button>
+        </div>
+        <div id="product1" hidden>
+            <p class="preTitle">introducing the new</p>
+            <h1 class="title">MacBook Pro</h1>
+            <p>Supersnelle M1 chip<br>
+                Veel beter dan pc/Windows<br>
+                Echte poorten want dat is nu weer de toekomst<br>
+                Wel duur.
+            </p>
+            <button class="button">Specificaties</button>
+        </div>
+        <div id="product2" hidden>
+            <p class="preTitle">introducing the new</p>
+            <h1 class="title">Youphone ultra</h1>
+            <p>Je kan er apps op draaien<br>
+                Internet is 3x sneller dan 10 jaar geleden<br>
+                Past in de broekzak<br>
+                Bellen is niet mogelijk.
+            </p>
+            <button class="button">Specificaties</button>
+        </div>
+    </div>
+    <nav class="navigation-buttons">
+        <button id='previous-button'>Vorig product</button>
+        <button id='next-button'>Volgend product</button>
+    </nav>
+    <div id="modelsettings">
+        <button id="disablerotation">Disable rotation</button>
+        <button id="enablerotation">Enable rotation</button>
+    </div>
+    <script type="module" src="bundle.js"></script>
+</body>
+
 </html>
