@@ -8,19 +8,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 
-
-// ----------------------------------------------------------------
-// HERO
-
-
-
-
 // Scene
 const hero = new THREE.Scene()
 const visual = new THREE.Scene()
 const product = new THREE.Scene()
 hero.background = new THREE.Color(0)
-// visual.background = new THREE.Color(0xe8e8e8)
 
 // Camera
 const heroCamera = new THREE.PerspectiveCamera(75, 1920 / 800, 0.1, 1000)
@@ -55,7 +47,6 @@ loader.load(
 const textureLoader = new THREE.TextureLoader()
 
 const geometry = new THREE.PlaneBufferGeometry(1, 1.3)
-// const geometry2 = new THREE.PlaneBufferGeometry(1, 1.3)
 
 for (let i = 0; i < 3; i++) {
     const material = new THREE.MeshBasicMaterial({
@@ -72,29 +63,24 @@ for (let i = 0; i < 3; i++) {
 }
 
 let objs = [] as any
-// let objs: objs[] = [] as any;
-
 
 visual.traverse((object) => {
     if ((<THREE.Mesh>object).isMesh)
         objs.push(object)
 })
 
-// Lights HERO
-// hero.add(new THREE.AmbientLight(0xffffff, 0.45));
-// visual.add(new THREE.AmbientLight(0xffffff, 0.45));
-
+// Lights
 const sphereSize = 10;
 
 const light1 = new THREE.PointLight(0x973999, 2)
 hero.add(light1)
 const pointLightHelper1 = new THREE.PointLightHelper(light1, sphereSize);
-hero.add(pointLightHelper1);
+// hero.add(pointLightHelper1);
 
 const light2 = new THREE.PointLight(0xffb900, 2)
 hero.add(light2)
 const pointLightHelper2 = new THREE.PointLightHelper(light2, sphereSize);
-hero.add(pointLightHelper2);
+// hero.add(pointLightHelper2);
 
 const light3 = new THREE.PointLight(0xe23838, 2)
 hero.add(light3)
@@ -130,12 +116,6 @@ light3.position.set(0, -3, 6)
 light5.position.set(0, -3, 6)
 light6.position.set(2, -3, 6)
 
-// Lights VISUAL
-
-// Lights
-// hero.add(new THREE.AmbientLight(0xffffff, 0.25));
-// const heroLight = new THREE.DirectionalLight(0xffff00, 1.0)
-
 // Renderer
 const canvas = document.getElementById("heroVisual") as HTMLCanvasElement
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true })
@@ -149,7 +129,7 @@ const canvas3 = document.getElementById("overzichtVisual") as HTMLCanvasElement
 const renderer3 = new THREE.WebGLRenderer({ canvas: canvas3, antialias: true })
 renderer3.setSize(1920, 800)
 
-
+// Orbit controls
 // new OrbitControls(heroCamera, renderer.domElement)
 // new OrbitControls(visualCamera, renderer2.domElement)
 // new OrbitControls(productCamera, renderer3.domElement)
@@ -158,6 +138,7 @@ renderer3.setSize(1920, 800)
 const heroPlane = new THREE.PlaneBufferGeometry(30, 30, 250, 350);
 const headphonePlane = new THREE.PlaneBufferGeometry(30, 30, 250, 350);
 
+// Materials // Meshes
 // const plane = new THREE.Mesh(heroPlane, new THREE.MeshNormalMaterial({}));
 const plane = new THREE.Mesh(heroPlane, new THREE.MeshPhysicalMaterial({
     // color: 0x00ff00,
@@ -180,11 +161,7 @@ const plane2 = new THREE.Mesh(headphonePlane, new THREE.MeshPhysicalMaterial({
     // wireframe: true
 }))
 
-
-
-// const visualPlane = new THREE.BoxGeometry(1, 1, 1, 1)
-// const gallery = new THREE.Mesh(visualPlane, new THREE.MeshNormalMaterial({}))
-
+// Transform meshes
 plane.material.side = THREE.DoubleSide;
 plane.receiveShadow = true;
 plane.castShadow = true;
@@ -221,7 +198,7 @@ let position = 0
 
 function onMouseWheel(event: any) {
     // console.log(event.deltaY)
-    y = event.deltaY * 0.0031
+    y = event.deltaY * 0.00222
 }
 
 const mouse = new THREE.Vector2()
@@ -232,6 +209,8 @@ window.addEventListener('mousemove', (event) => {
 
 const raycaster = new THREE.Raycaster()
 
+
+// Animate
 function animate() {
     requestAnimationFrame(animate)
     animateLights()
@@ -241,8 +220,7 @@ function animate() {
         headphone1.scene.rotation.y += 0.03
     }
 
-    // SINE WAVE
-    // const now = Date.now() / 1000;
+    // Movement planes
     const now = Date.now() / 3500;
     for (let i = 0; i < count; i++) {
         const x = heroPlane.attributes.position.getX(i);
@@ -276,8 +254,6 @@ function animate() {
     headphonePlane.computeVertexNormals();
     headphonePlane.attributes.position.needsUpdate = true;
 
-    // gallery.rotation.x += .05
-
     if ( window.scrollY > 0 ) {
         position += y
         y *= .9
@@ -285,6 +261,7 @@ function animate() {
 
     showSpecs()
 
+    // Verplaatsen gallery
     visualCamera.position.y = -position
 
     // Raycaster
@@ -295,19 +272,17 @@ function animate() {
         console.log('intersected')
     }
 
-
-
     render()
 }
 
+// Gallery GSAP
 function showSpecs(){
-
     const specs1 = document.getElementById("carrouselText1")
     if (window.scrollY > 250){
         gsap.to(specs1, {
             duration: 3,
             css: {
-                top: "900px",
+                top: "550px",
                 opacity: 0
             }
         })
@@ -315,7 +290,7 @@ function showSpecs(){
         gsap.to(specs1, {
             duration: 2,
             css: {
-                top: "1050px",
+                top: "1030px",
                 opacity: 1
             }
         })
@@ -334,7 +309,7 @@ function showSpecs(){
         gsap.to(specs2, {
             duration: 2,
             css: {
-                top: "1225px",
+                top: "1125px",
                 opacity: 1
             }
         })
@@ -358,20 +333,7 @@ function showSpecs(){
             }
         })
     }
-
-    // const specs4 = document.getElementById("carrouselText4")
-    // if (window.scrollY > 580){
-    //     gsap.to(specs4, {
-    //         duration: 3,
-    //         css: {
-    //             top: "800px",
-    //             opacity: 0
-    //         }
-    //     })
-    // }
-
 }
-
 
 function render() {
     renderer.render(hero, heroCamera)
@@ -406,27 +368,27 @@ function animateLights() {
 animate()
 
 // GUI
-const data = {
-    color: light1.color.getHex(),
-    mapsEnabled: true
-}
+// const data = {
+//     color: light1.color.getHex(),
+//     mapsEnabled: true
+// }
 
-const gui = new GUI()
-const lightFolder = gui.addFolder('THREE.Light')
-lightFolder.addColor(data, 'color').onChange(() => {
-    light1.color.setHex(Number(data.color.toString().replace('#', '0x')))
-})
-const lightFolder2 = gui.addFolder('THREE.Light2')
-lightFolder2.addColor(data, 'color').onChange(() => {
-    light2.color.setHex(Number(data.color.toString().replace('#', '0x')))
-})
-const lightFolder3 = gui.addFolder('THREE.Light3')
-lightFolder3.addColor(data, 'color').onChange(() => {
-    light3.color.setHex(Number(data.color.toString().replace('#', '0x')))
-})
-const lightFolder4 = gui.addFolder('THREE.Light4')
-lightFolder4.addColor(data, 'color').onChange(() => {
-    light4.color.setHex(Number(data.color.toString().replace('#', '0x')))
-})
+// const gui = new GUI()
+// const lightFolder = gui.addFolder('THREE.Light')
+// lightFolder.addColor(data, 'color').onChange(() => {
+//     light1.color.setHex(Number(data.color.toString().replace('#', '0x')))
+// })
+// const lightFolder2 = gui.addFolder('THREE.Light2')
+// lightFolder2.addColor(data, 'color').onChange(() => {
+//     light2.color.setHex(Number(data.color.toString().replace('#', '0x')))
+// })
+// const lightFolder3 = gui.addFolder('THREE.Light3')
+// lightFolder3.addColor(data, 'color').onChange(() => {
+//     light3.color.setHex(Number(data.color.toString().replace('#', '0x')))
+// })
+// const lightFolder4 = gui.addFolder('THREE.Light4')
+// lightFolder4.addColor(data, 'color').onChange(() => {
+//     light4.color.setHex(Number(data.color.toString().replace('#', '0x')))
+// })
 
-gui.add(visualCamera.position, 'y').min(-5).max(10)
+// gui.add(visualCamera.position, 'y').min(-5).max(10)
