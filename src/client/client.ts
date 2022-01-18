@@ -191,8 +191,6 @@ window.addEventListener("scroll", function () {
             var intersectsBlue = raycaster.intersectObject(colorCircleBlue);
             var intersectsGold = raycaster.intersectObject(colorCircleGold);
 
-            var intersectPhonePro = raycaster.intersectObject(phoneVar2)
-            var intersectPhoneLite = raycaster.intersectObject(phoneSilver)
 
             if (intersectsBlack.length > 0) {
                 setAllColorPositionsTo0()
@@ -503,15 +501,13 @@ function animate() {
         rendererOne.render(sceneOne, camera)
     }
     if (playAnimationTwo) {
-        if (phoneVar2.position.x > -2) {
+        if (phoneVar2.position.x > -2.5) {
             phoneVar2.position.x -= 0.025
             phoneVar2.rotation.y += 0.0065
-            phoneVar2.scale.x -= 0.0015
         }
-        if (phoneSilver.position.x < 2) {
+        if (phoneSilver.position.x < 2.5) {
             phoneSilver.position.x += 0.025
             phoneSilver.rotation.y -= 0.0065
-            phoneSilver.scale.x -= 0.0015
         }
 
         log("text moet verschijnen")
