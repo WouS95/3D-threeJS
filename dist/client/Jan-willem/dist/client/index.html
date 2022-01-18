@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="CSS/style.css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>MacBook Pro</title>
+        <style>
+            /* HEADER CSS */
+
+        .header {
+            height: 60px;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 20px;
+            left: 0;
+            z-index: 9999999999;
+            justify-content: center;
+        }
+
+        .headerContent {
+            display: flex;
+            align-items: center;
+            width: 30vw;
+            height: 100%;
+            background-color: rgba(36, 36, 36, 0.5);
+            justify-content: space-evenly;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .headerContent .title {
+            color: white;
+            font-family: MaisonDemi;
+            font-size: 22px;
+        }
+
+        .headerContent a {
+            text-decoration: none;
+            color: #d2d2d2;
+            font-family: MaisonBook;
+        }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="headerContent">
+                <a href="../../../index.html">home</a>
+                <div class="title">3Store</div>
+                <a href="../../../Wouter/dist/client">catalogue</a>
+            </div>
+        </div>
+
+        <div id="guiContainer"></div>    
+        
+        <section class="intro">
+            <div class="textBox">
+                <p>introducing the new</p>
+                <h1>MacBook Pro</h1>
+                <button class="button">Purchase</button>
+            </div>
+        </section>
+
+
+        <div class="textBoxContainer">
+            <div class="textBoxOverlay TBO1">
+                <p>with a</p>
+                <h1>Revamped Design</h1>
+            </div>
+            <div class="textBoxOverlay TBO2">
+                <p>now available in</p>
+                <h1>Space Gray</h1>
+            </div>
+            <div class="textBoxOverlay TBO3">
+                <p>crystal clear</p>
+                <h1>Higher Resolution</h1>
+            </div>
+        </div>
+
+        <div class="sideBySide">
+            <section class="horizontal horizontal0">
+            </section>
+            <section class="horizontal horizontal1">
+            </section>
+            <section class="horizontal horizontal2"></section>
+        </div>
+
+        <section class="keyboardSection KBS1">
+            <div class="textBox">
+                <p>new and improved</p>
+                <h1>Magic Keyboard</h1>
+            </div>
+        </section>
+
+        <section class="keyboardSection KBS2">
+            <div class="textBox">
+                <p>improve your workflow</p>
+                <h1>Touchbar</h1>
+            </div>
+        </section>
+
+        <section class="rotateSection">
+            <div class="textBox">
+                <p>the new MacBook Pro</p>
+                <h1>Order now</h1>
+                <button class="button">Purchase</button>
+            </div>
+        </section>
+
+        <script type="module" src="bundle.js"></script>
+    </body>
+</html>
